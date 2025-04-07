@@ -19,6 +19,9 @@ public class Aeropuerto : IValidable
 
     public void Validar()
     {
-        throw new NotImplementedException();
+        if (string.IsNullOrEmpty(_codigoIATA) || _codigoIATA.Length != 3) throw new Exception("El código IATA es un identificador único de 3 letras");
+        if (string.IsNullOrEmpty(_ciudad)) throw new Exception("La ciudad no puede ser vacía");
+        if (_costoOp < 0) throw new Exception("El costo de Operación debe ser positivo.");
+        if(_costoTasas < 0) throw new Exception("El costo de Tasas es obligatorio y debe ser positivo");
     }
 }

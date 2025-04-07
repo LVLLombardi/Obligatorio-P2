@@ -23,6 +23,8 @@ public class Pasaje : IValidable
 
     public void Validar()
     {
-        throw new NotImplementedException();
+        if (_vuelo == null) throw new Exception("El vuelo no puede ser nulo");
+        if(_pasajero == null) throw new Exception("El pasajero no puede ser nulo");
+        if (_precio < 0) throw new Exception("El precio debe ser positivo");
     }
 }

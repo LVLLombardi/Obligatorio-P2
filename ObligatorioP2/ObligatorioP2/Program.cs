@@ -53,11 +53,11 @@ class Program
         Console.ForegroundColor = ConsoleColor.Cyan;
         Console.WriteLine("****** MENU ******");
         Console.ForegroundColor = ConsoleColor.Gray;
-        Console.WriteLine("1 - Crear nueva marca");
-        Console.WriteLine("2 - Listado de marcas");
-        Console.WriteLine("3 - Listado de autos");
-        Console.WriteLine("4 - Crear nuevo auto");
-        Console.WriteLine("5 - Autos por año");
+        Console.WriteLine("1 - ");
+        Console.WriteLine("2 - ");
+        Console.WriteLine("3 - ");
+        Console.WriteLine("4 - ");
+        Console.WriteLine("5 - ");
         Console.WriteLine("0 - Salir");
     }
     

@@ -22,6 +22,10 @@ public class Avion : IValidable
 
     public void Validar()
     {
-        throw new NotImplementedException();
+        if(string.IsNullOrEmpty(_fabricante)) throw new Exception("El fabricante no puede ser vacío");
+        if (string.IsNullOrEmpty(_modelo)) throw new Exception("El modelo no puede ser vacío");
+        if (_cantAsientos <= 0) throw new Exception("La cantidad de asientos debe ser mayor a cero");
+        if (_alcanceKm < 0) throw new Exception("La cantidad máxima de Kilometros que puede volar no puede ser negativa");
+        if (_costoOperacion < 0) throw new Exception("El costo de operación por km no puede ser menor a cero");
     }
 }

@@ -20,6 +20,9 @@ public class Vuelo : IValidable
 
     public void Validar()
     {
-        throw new NotImplementedException();
+        if (string.IsNullOrEmpty(_nroVuelo)) throw new Exception("El número de vuelo no puede ser vacío");
+        if (_ruta == null) throw new Exception("La ruta no puede ser nula");
+        if (_avion == null) throw new Exception("El avion no puede ser nulo");
+        if (_frecuencia < 0) throw new Exception("La frecuencia no puede ser negativa");
     }
 }
