@@ -17,6 +17,8 @@ public class Administrador : IValidable
 
     public void Validar()
     {
-        throw new NotImplementedException();
+        if (string.IsNullOrEmpty(_apodo)) throw new Exception("El apodo no puede ser vacío");
+        if (string.IsNullOrEmpty(_correoAdmin)) throw new Exception("El correo del administrador no puede ser vacio");
+        if (string.IsNullOrEmpty(_contraseniaAdmin)) throw new Exception("La contraseña no puede ser vacia");
     }
 }
