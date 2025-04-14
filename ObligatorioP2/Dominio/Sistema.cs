@@ -13,6 +13,8 @@ public class Sistema
     {
         PrecargarUsuarios();
         PrecargarAeropuertos();
+        PrecargarRutas();
+        PrecargarAviones();
     }
 
     // CREACION DE USUARIO
@@ -131,8 +133,36 @@ public class Sistema
         CrearRuta(new Ruta(BuscarAeropuertoPorCodigo("YYZ"), BuscarAeropuertoPorCodigo("BCN"), 115));
         CrearRuta(new Ruta(BuscarAeropuertoPorCodigo("BOG"), BuscarAeropuertoPorCodigo("LHR"), 130));
     }
+
+    // CREACION DE AVION
+    public void CrearAvion(Avion a)
+    {
+        if (a == null) throw new Exception("El avion no puede ser nulo");
+        a.Validar();
+        _aviones.Add(a);
+    }
+
+    // PRECARGA DE AVIONES
+    private void PrecargarAviones()
+    {
+        CrearAvion(new Avion("Boeing", "737", 180, 5600, 15000));
+        CrearAvion(new Avion("Airbus", "A320", 160, 6100, 14000));
+        CrearAvion(new Avion("Embraer", "E190", 100, 4200, 9000));
+        CrearAvion(new Avion("Bombardier", "CRJ900", 90, 3700, 8500));
+    }
+
+    // CREACION DE VUELO
+    public void CrearVuelo(Vuelo v)
+    {
+        if (v == null) throw new Exception("El vuelo no puede ser nulo");
+        v.Validar();
+        _vuelos.Add(v);
+    }
     
-    
-    
+    // PRECARGA DE VUELOS
+    private void PrecargaVuelos()
+    {
+        
+    }
     
 }
