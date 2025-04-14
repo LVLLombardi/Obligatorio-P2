@@ -17,6 +17,11 @@ public class Aeropuerto : IValidable
         _costoTasas = costoTasas;
     }
 
+    public string Codigo
+    {
+        get { return _codigoIATA; }
+    }
+
     public void Validar()
     {
         if (string.IsNullOrEmpty(_codigoIATA) || _codigoIATA.Length != 3) throw new Exception("El código IATA es un identificador único de 3 letras");
