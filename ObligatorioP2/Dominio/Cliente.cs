@@ -2,25 +2,25 @@ using Dominio.Interfaces;
 
 namespace Dominio;
 
-public class Cliente : IValidable
+public abstract class Cliente : Usuario
 {
     private string _documento;
     private string _nombre;
-    private string _correoCli;
-    private string _contraseniaCli;
     private string _nacionalidad;
 
-    public Cliente(string documento, string nombre, string correoCli, string contraseniaCli, string nacionalidad)
+    public Cliente(string correo, string contrasenia, string documento, string nombre, string nacionalidad):base(correo, contrasenia)
     {
         _documento = documento;
         _nombre = nombre;
-        _correoCli = correoCli;
-        _contraseniaCli = contraseniaCli;
         _nacionalidad = nacionalidad;
     }
 
-    public void Validar()
+    public override void Validar()
     {
-        throw new NotImplementedException();
+        base.Validar();
+        if (string.IsNullOrEmpty(_documento)) throw new Exception("El documento no puede ser vacio");
+        if (string.IsNullOrEmpty(_nombre)) throw new Exception("El nombre del cliente no puede ser vacio");
+        if(string.IsNullOrEmpty(_nacionalidad)) throw new Exception("El nacionalidad no puede ser vacia");
     }
+    
 }

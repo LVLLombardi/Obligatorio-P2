@@ -19,7 +19,7 @@ class Program
             switch (opcion)
             {
                 case "1":
-                    CrearAeropuerto();
+                    
                     PressToContinue();
                     break;
                 case "2":
@@ -54,7 +54,7 @@ class Program
         Console.ForegroundColor = ConsoleColor.Cyan;
         Console.WriteLine("****** MENU ******");
         Console.ForegroundColor = ConsoleColor.Gray;
-        Console.WriteLine("1 - Crear Aeropuerto");
+        Console.WriteLine("1 - Listado de Todos los Clientes");
         Console.WriteLine("2 - Listar Aeropuertos");
         Console.WriteLine("3 - ");
         Console.WriteLine("4 - ");
@@ -104,7 +104,7 @@ class Program
         return numero;
     }
 
-    static void CrearAeropuerto()
+    /*static void CrearAeropuerto()
     {
         Console.Clear();
         Console.WriteLine("****** CREAR AEROPUERTO ******");
@@ -131,6 +131,8 @@ class Program
         {
             MostrarError(ex.Message);
         }
-    }
+    }*/
+    
+    
     
 }
