@@ -11,6 +11,6 @@ public class ClienteOcasional:Cliente
 
     public override string ToString()
     {
-        return $"{base.ToString()} - Es Elegible: {_esElegible}";
+        return $"Cliente Ocasional -> {base.ToString()} - Es Elegible: {_esElegible}";
     }
 }

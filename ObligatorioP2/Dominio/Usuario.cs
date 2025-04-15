@@ -18,5 +18,9 @@ public abstract class Usuario : IValidable
         if (string.IsNullOrEmpty(_correo)) throw new Exception("El correo no puede ser vacio");
         if (string.IsNullOrEmpty(_contrasenia)) throw new Exception("La contraseña no puede ser vacia");
     }
-    
+
+    public override string ToString()
+    {
+        return $"Correo: {_correo}";
+    }
 }

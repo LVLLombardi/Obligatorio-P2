@@ -25,6 +25,6 @@ public abstract class Cliente : Usuario
 
     public override string ToString()
     {
-        return $"Cliente -> Nombre Cliente: {_nombre} - Nacionalidad: {_nacionalidad} - Documento: {_documento}";
+        return $"Nombre Cliente: {_nombre} - {base.ToString()} - Nacionalidad: {_nacionalidad}";
     }
 }
