@@ -160,7 +160,7 @@ public class Sistema
     }
     
     // PRECARGA DE VUELOS
-    private void PrecargaVuelos()
+    private void PrecargarVuelos()
     {
         
     }
