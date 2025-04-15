@@ -7,9 +7,9 @@ public class Vuelo : IValidable
     private string _nroVuelo;
     private Ruta _ruta;
     private Avion _avion;
-    private int _frecuencia;
+    private Frecuencia _frecuencia;
 
-    public Vuelo(string nroVuelo, Ruta ruta, Avion avion, int frecuencia)
+    public Vuelo(string nroVuelo, Ruta ruta, Avion avion, Frecuencia frecuencia)
     {
         _nroVuelo = nroVuelo;
         _ruta = ruta;
@@ -23,7 +23,6 @@ public class Vuelo : IValidable
         if (!ValidarNroVuelo(_nroVuelo)) throw new Exception("El número de vuelo no puede ser vacío y debe contener 2 letras y entre 1 y 4 números"); // VALIDAR ALFANUMERICO
         if (_ruta == null) throw new Exception("La ruta no puede ser nula");
         if (_avion == null) throw new Exception("El avion no puede ser nulo");
-        if (_frecuencia < 0) throw new Exception("La frecuencia no puede ser negativa");
     }
 
     public bool ValidarNroVuelo(string nroVuelo)
