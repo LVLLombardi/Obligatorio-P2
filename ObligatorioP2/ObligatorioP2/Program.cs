@@ -19,7 +19,7 @@ class Program
             switch (opcion)
             {
                 case "1":
-                    CrearAeropuerto();
+                    ListarTodosLosClientes();
                     PressToContinue();
                     break;
                 case "2":
@@ -54,8 +54,8 @@ class Program
         Console.ForegroundColor = ConsoleColor.Cyan;
         Console.WriteLine("****** MENU ******");
         Console.ForegroundColor = ConsoleColor.Gray;
-        Console.WriteLine("1 - Crear Aeropuerto");
-        Console.WriteLine("2 - Listar Aeropuertos");
+        Console.WriteLine("1 - Listado de Todos los Clientes");
+        Console.WriteLine("2 - Listar Todos los Vuelos según código de Aeropuerto");
         Console.WriteLine("3 - ");
         Console.WriteLine("4 - ");
         Console.WriteLine("5 - ");
@@ -104,7 +104,7 @@ class Program
         return numero;
     }
 
-    static void CrearAeropuerto()
+    /*static void CrearAeropuerto()
     {
         Console.Clear();
         Console.WriteLine("****** CREAR AEROPUERTO ******");
@@ -130,6 +130,29 @@ class Program
         catch (Exception ex)
         {
             MostrarError(ex.Message);
+        }
+    }*/
+
+    static void ListarTodosLosClientes()
+    {
+        Console.Clear();
+        Console.ForegroundColor = ConsoleColor.Magenta;
+        Console.WriteLine("**** LISTAR TODOS LOS CLIENTES ****");
+        Console.ForegroundColor = ConsoleColor.Gray;
+        Console.WriteLine();
+
+        try
+        {
+            List<Usuario> clientes = miSistema.ListarClientes();
+            if (clientes.Count == 0) throw new Exception("No hay clientes registrados en el Sistema");
+            foreach (Usuario c in clientes)
+            {
+                Console.WriteLine(c.ToString());
+            }
+        }
+        catch (Exception e)
+        {
+            MostrarError(e.Message);
         }
     }
     

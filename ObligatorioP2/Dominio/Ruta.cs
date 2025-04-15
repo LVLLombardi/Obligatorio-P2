@@ -10,6 +10,16 @@ public class Ruta : IValidable
     private Aeropuerto _aeropuertoLlegada;
     private double _distancia;
 
+    public Aeropuerto AeropuertoSalida
+    {
+        get { return _aeropuertoSalida; }
+    }
+
+    public Aeropuerto AeropuertoLlegada
+    {
+        get { return _aeropuertoLlegada; }
+    }
+    
     public Ruta(Aeropuerto aeropuertoSalida, Aeropuerto aeropuertoLlegada, double distancia)
     {
         _id = s_ultId++;
@@ -21,8 +31,8 @@ public class Ruta : IValidable
 
     public void Validar()
     {
-        if(_aeropuertoSalida == null) throw new Exception("El aeropuerto de salida no puede ser nulo");
-        if(_aeropuertoLlegada == null) throw new Exception("El aeropuerto de llegada no puede ser nulo");
+        //if(_aeropuertoSalida == null) throw new Exception("El aeropuerto de salida no puede ser nulo");
+        //if(_aeropuertoLlegada == null) throw new Exception("El aeropuerto de llegada no puede ser nulo");
         if (_distancia < 0) throw new Exception("La distancia no puede ser negativa");
     }
 }

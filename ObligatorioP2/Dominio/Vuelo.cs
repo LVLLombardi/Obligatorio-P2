@@ -20,9 +20,53 @@ public class Vuelo : IValidable
 
     public void Validar()
     {
-        if (string.IsNullOrEmpty(_nroVuelo)) throw new Exception("El número de vuelo no puede ser vacío");
+        if (!ValidarNroVuelo(_nroVuelo)) throw new Exception("El número de vuelo no puede ser vacío y debe contener 2 letras y entre 1 y 4 números"); // VALIDAR ALFANUMERICO
         if (_ruta == null) throw new Exception("La ruta no puede ser nula");
         if (_avion == null) throw new Exception("El avion no puede ser nulo");
         if (_frecuencia < 0) throw new Exception("La frecuencia no puede ser negativa");
+    }
+
+    public bool ValidarNroVuelo(string nroVuelo)
+    {
+        bool esValido = true;
+        if (string.IsNullOrEmpty(nroVuelo) || nroVuelo.Length < 3 || nroVuelo.Length > 6)
+        {
+            esValido = false;
+        }
+        else
+        {
+            for (int i = 0; i < 2; i++)
+            {
+                char c = nroVuelo[i];
+                if (c < 'A' || c > 'Z')
+                {
+                    esValido = false;
+                }
+            }
+            
+            int cantDigitos = nroVuelo.Length - 2;
+
+            if (cantDigitos < 1 || cantDigitos > 4)
+            {
+                esValido = false;
+            }
+            else
+            {
+                for (int i = 2; i < nroVuelo.Length; i++)
+                {
+                    char c = nroVuelo[i];
+                    if (c < '0' || c > '9')
+                    {
+                        esValido = false;
+                    }
+                }
+            }
+        }
+        return esValido;
+    }
+
+    public override string ToString()
+    {
+        return $"Vuelo -> Número de Vuelo: {_nroVuelo} - Modelo Avión: {_avion.Modelo} - Ruta: {_ruta.AeropuertoSalida} - {_ruta.AeropuertoLlegada} - Frecuencia: {_frecuencia}";
     }
 }
