@@ -19,7 +19,7 @@ class Program
             switch (opcion)
             {
                 case "1":
-                    
+                    ListarTodosLosClientes();
                     PressToContinue();
                     break;
                 case "2":
@@ -132,7 +132,14 @@ class Program
             MostrarError(ex.Message);
         }
     }*/
-    
-    
+
+    static void ListarTodosLosClientes()
+    {
+        List<Usuario> clientes = miSistema.ListarClientes();
+        foreach (Usuario c in clientes)
+        {
+            Console.WriteLine(c.ToString());
+        }
+    }
     
 }

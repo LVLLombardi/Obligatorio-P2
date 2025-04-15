@@ -8,5 +8,9 @@ public class ClienteOcasional:Cliente
     {
         _esElegible = esElegible;
     }
-    
+
+    public override string ToString()
+    {
+        return $"{base.ToString()} - Es Elegible: {_esElegible}";
+    }
 }

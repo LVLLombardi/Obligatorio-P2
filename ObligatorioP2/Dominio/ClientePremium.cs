@@ -14,4 +14,9 @@ public class ClientePremium:Cliente
         base.Validar();
         if (_puntos < 0) throw new Exception("Los puntos deben ser positivos");
     }
+
+    public override string ToString()
+    {
+        return $"{base.ToString()} - Puntos: {_puntos}";
+    }
 }

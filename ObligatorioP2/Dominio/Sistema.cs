@@ -164,5 +164,19 @@ public class Sistema
     {
         
     }
+
+    public List<Usuario> ListarClientes()
+    {
+        List<Usuario> clientes = new List<Usuario>();
+        foreach (Usuario u in _usuarios)
+        {
+            if (u is Cliente)
+            {
+                clientes.Add(u);
+            }
+        }
+
+        return clientes;
+    }
     
 }

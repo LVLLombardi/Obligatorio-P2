@@ -22,5 +22,9 @@ public abstract class Cliente : Usuario
         if (string.IsNullOrEmpty(_nombre)) throw new Exception("El nombre del cliente no puede ser vacio");
         if(string.IsNullOrEmpty(_nacionalidad)) throw new Exception("El nacionalidad no puede ser vacia");
     }
-    
+
+    public override string ToString()
+    {
+        return $"Cliente -> Nombre Cliente: {_nombre} - Nacionalidad: {_nacionalidad} - Documento: {_documento}";
+    }
 }
