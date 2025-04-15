@@ -55,7 +55,7 @@ class Program
         Console.WriteLine("****** MENU ******");
         Console.ForegroundColor = ConsoleColor.Gray;
         Console.WriteLine("1 - Listado de Todos los Clientes");
-        Console.WriteLine("2 - Listar Todos los Vuelos según un código de Aeropuerto");
+        Console.WriteLine("2 - Listar Todos los Vuelos según código de Aeropuerto");
         Console.WriteLine("3 - ");
         Console.WriteLine("4 - ");
         Console.WriteLine("5 - ");
@@ -135,10 +135,24 @@ class Program
 
     static void ListarTodosLosClientes()
     {
-        List<Usuario> clientes = miSistema.ListarClientes();
-        foreach (Usuario c in clientes)
+        Console.Clear();
+        Console.ForegroundColor = ConsoleColor.Magenta;
+        Console.WriteLine("**** LISTAR TODOS LOS CLIENTES ****");
+        Console.ForegroundColor = ConsoleColor.Gray;
+        Console.WriteLine();
+
+        try
         {
-            Console.WriteLine(c.ToString());
+            List<Usuario> clientes = miSistema.ListarClientes();
+            if (clientes.Count == 0) throw new Exception("No hay clientes registrados en el Sistema");
+            foreach (Usuario c in clientes)
+            {
+                Console.WriteLine(c.ToString());
+            }
+        }
+        catch (Exception e)
+        {
+            MostrarError(e.Message);
         }
     }
     
