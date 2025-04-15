@@ -64,4 +64,9 @@ public class Vuelo : IValidable
         }
         return esValido;
     }
+
+    public override string ToString()
+    {
+        return $"Vuelo -> Número de Vuelo: {_nroVuelo} - Modelo Avión: {_avion.Modelo} - Ruta: {_ruta.AeropuertoSalida} - {_ruta.AeropuertoLlegada} - Frecuencia: {_frecuencia}";
+    }
 }

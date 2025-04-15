@@ -10,6 +10,10 @@ public class Avion : IValidable
     private double _alcanceKm;
     private double _costoOperacion;
 
+    public string Modelo
+    {
+        get { return _modelo; }
+    }
     public Avion(string fabricante, string modelo, int cantAsientos, double alcanceKm, double costoOperacion)
     {
         _fabricante = fabricante;
@@ -27,5 +31,10 @@ public class Avion : IValidable
         if (_cantAsientos <= 0) throw new Exception("La cantidad de asientos debe ser mayor a cero");
         if (_alcanceKm < 0) throw new Exception("La cantidad máxima de Kilometros que puede volar no puede ser negativa");
         if (_costoOperacion < 0) throw new Exception("El costo de operación por km no puede ser menor a cero");
+    }
+
+    public override string ToString()
+    {
+        return $"Modelo: {_modelo}";
     }
 }

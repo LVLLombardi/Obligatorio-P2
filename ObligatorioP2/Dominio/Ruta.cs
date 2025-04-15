@@ -10,6 +10,16 @@ public class Ruta : IValidable
     private Aeropuerto _aeropuertoLlegada;
     private double _distancia;
 
+    public Aeropuerto AeropuertoSalida
+    {
+        get { return _aeropuertoSalida; }
+    }
+
+    public Aeropuerto AeropuertoLlegada
+    {
+        get { return _aeropuertoLlegada; }
+    }
+    
     public Ruta(Aeropuerto aeropuertoSalida, Aeropuerto aeropuertoLlegada, double distancia)
     {
         _id = s_ultId++;
