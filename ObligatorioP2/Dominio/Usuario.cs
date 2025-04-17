@@ -12,7 +12,15 @@ public abstract class Usuario : IValidable
         _correo = correo;
         _contrasenia = contrasenia;
     }
-    
+
+    public string Correo 
+    {
+        get { return _correo; }
+    }
+    public string Contrasenia
+    {
+        get { return _contrasenia; }
+    }
     public virtual void Validar()
     {
         if (string.IsNullOrEmpty(_correo)) throw new Exception("El correo no puede ser vacio");

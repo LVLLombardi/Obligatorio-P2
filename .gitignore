@@ -1,0 +1,26 @@
+﻿################################################################################
+# Este archivo .gitignore ha sido creado automáticamente por Microsoft(R) Visual Studio.
+################################################################################
+
+# Visual Studio
+.vs/
+ObligatorioP2/.vs/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+# Archivos compilados
+bin/
+obj/
+**/bin/
+**/obj/
+
+# Otros archivos temporales
+*.log
+*.cache
+*.pdb
+*.dbmdl
+
+# VS Code config (si usás VS Code a veces)
+.vscode/
