@@ -66,7 +66,7 @@ public class Sistema
     public void AgregarAeropuerto(Aeropuerto aeropuerto)
     {
         if (aeropuerto == null) throw new Exception("El Aeropuerto no puede ser nulo");
-        if (BuscarAeropuertoPorCodigo(aeropuerto.Codigo)!=null) throw new Exception("El aeropuerto ya está cargado");//validacion de que aeropuerto ya no esté creado
+        if (BuscarAeropuertoPorCodigo(aeropuerto.Codigo)!= null) throw new Exception("El aeropuerto ya está cargado");//validacion de que aeropuerto ya no esté creado
         aeropuerto.Validar();
         _aeropuertos.Add(aeropuerto);
     }
@@ -202,13 +202,13 @@ public class Sistema
         _vuelos.Add(v);
     }
     //BUSCAR VUELO POR NUMERO DE VUELO
-    public Vuelo BuscarVuelo(string NumeroVuelo)
+    public Vuelo BuscarVuelo(string numeroVuelo)
     {
         Vuelo v = null;
         int i = 0;
         while (v == null && i < _vuelos.Count)
         {
-            if ((_vuelos[i].NumeroVuelo == NumeroVuelo)) v = _vuelos[i];
+            if ((_vuelos[i].NumeroVuelo == numeroVuelo)) v = _vuelos[i];
             i++;
         }
 
@@ -252,7 +252,7 @@ public class Sistema
 
     }
 
-    // CREACION DE PASAJE --------------------------------------------------
+    // CREACION DE PASAJE 
     public void AgregarPasaje(Pasaje p)
     {
         if (p == null) throw new Exception("El pasaje no puede ser nulo");    
