@@ -5,7 +5,7 @@ namespace Dominio;
 public class Pasaje : IValidable
 {
     private int _id;
-    private int s_ultId = 1;
+    private static int s_ultId = 1;  //para que pueda ser compartido static
     private Vuelo _vuelo;
     private DateTime _fecha;
     private Cliente _pasajero;
@@ -19,7 +19,9 @@ public class Pasaje : IValidable
         _pasajero = pasajero;
         _equipaje = equipaje;
         _precio = precio;
+        _fecha = DateTime.Now; //para tener una fecha asociada al pasaje
     }
+
 
     public void Validar()
     {

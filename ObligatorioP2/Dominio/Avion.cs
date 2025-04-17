@@ -22,7 +22,14 @@ public class Avion : IValidable
         _alcanceKm = alcanceKm;
         _costoOperacion = costoOperacion;
     }
-
+    public string ModeloAvion //NUEVO
+    {
+        get { return _modelo; }
+    }
+    public string FabricanteAvion //NUEVO
+    {
+        get { return _fabricante; }
+    }
 
     public void Validar()
     {

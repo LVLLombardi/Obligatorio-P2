@@ -5,7 +5,7 @@ namespace Dominio;
 public class Ruta : IValidable
 {
     private int _id;
-    private int s_ultId = 1;
+    private static int s_ultId = 1; //para que pueda ser compartido static
     private Aeropuerto _aeropuertoSalida;
     private Aeropuerto _aeropuertoLlegada;
     private double _distancia;
@@ -19,7 +19,11 @@ public class Ruta : IValidable
     {
         get { return _aeropuertoLlegada; }
     }
-    
+
+    public int Id
+    {
+        get { return _id; }
+    }
     public Ruta(Aeropuerto aeropuertoSalida, Aeropuerto aeropuertoLlegada, double distancia)
     {
         _id = s_ultId++;
@@ -27,7 +31,6 @@ public class Ruta : IValidable
         _aeropuertoLlegada = aeropuertoLlegada;
         _distancia = distancia;
     }
-
 
     public void Validar()
     {

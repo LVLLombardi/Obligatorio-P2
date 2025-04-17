@@ -1,3 +1,6 @@
+using System.Reflection;
+using System.Text;
+
 namespace Dominio;
 
 public class Sistema
@@ -15,6 +18,8 @@ public class Sistema
         PrecargarAeropuertos();
         PrecargarRutas();
         PrecargarAviones();
+        PrecargarVuelos();
+        PrecargarPasajes();
     }
 
     // CREACION DE USUARIO
@@ -24,7 +29,20 @@ public class Sistema
         u.Validar();
         _usuarios.Add(u);
     }
+    //BUSCAR CLIENTE POR CORREO Y CONTRASEÑA
+    public Cliente BuscarCliente(string correo)
+    {
+        Cliente u = null;
+        int i = 0;
 
+        while (u == null && i < _usuarios.Count)
+        {
+            if (_usuarios[i] is Cliente c && c.Correo == correo) u = c;
+            i++;
+        }
+
+        return u; 
+    }
     // PRECARGA USUARIOS - CLIENTE PREMIUM - CLIENTE OCASIONAL - ADMINISTRADORES
     private void PrecargarUsuarios()
     {
@@ -48,6 +66,7 @@ public class Sistema
     public void AgregarAeropuerto(Aeropuerto aeropuerto)
     {
         if (aeropuerto == null) throw new Exception("El Aeropuerto no puede ser nulo");
+        if (BuscarAeropuertoPorCodigo(aeropuerto.Codigo)!=null) throw new Exception("El aeropuerto ya está cargado");//validacion de que aeropuerto ya no esté creado
         aeropuerto.Validar();
         _aeropuertos.Add(aeropuerto);
     }
@@ -99,6 +118,16 @@ public class Sistema
         _rutas.Add(r);
     }
 
+    //BUSCAR RUTA POR ID
+    public Ruta BuscarRuta(int IdRuta)
+    {
+        foreach (Ruta r in _rutas)
+        {
+            if (r.Id == IdRuta) return r;
+        }
+        return null;
+    }
+
     // PRECARGA DE RUTAS
     private void PrecargarRutas()
     {
@@ -135,11 +164,25 @@ public class Sistema
     }
 
     // CREACION DE AVION
-    public void AgregarAvion(Avion a)
+    public void AgregarAvion(Avion a) // validacion extra de que no haya un fabricante y modelo iguales
     {
         if (a == null) throw new Exception("El avion no puede ser nulo");
+        if (BuscarAvion(a.ModeloAvion,a.FabricanteAvion) != null) throw new Exception("Ya existe un avion con el mismo modelo y fabricante");
         a.Validar();
         _aviones.Add(a);
+    }
+    //BUSCAR AVIÓN POR MODELO Y FABRICANTE:
+    public Avion BuscarAvion(string fabricante, string modelo)
+    {
+        Avion a = null;
+        int i = 0;
+        while (a == null && i < _aviones.Count)
+        {
+            if ((_aviones[i].FabricanteAvion == fabricante)&&(_aviones[i].ModeloAvion == modelo)) a = _aviones[i];
+            i++;
+        }
+
+        return a;
     }
 
     // PRECARGA DE AVIONES
@@ -158,24 +201,95 @@ public class Sistema
         v.Validar();
         _vuelos.Add(v);
     }
-    
+    //BUSCAR VUELO POR NUMERO DE VUELO
+    public Vuelo BuscarVuelo(string NumeroVuelo)
+    {
+        Vuelo v = null;
+        int i = 0;
+        while (v == null && i < _vuelos.Count)
+        {
+            if ((_vuelos[i].NumeroVuelo == NumeroVuelo)) v = _vuelos[i];
+            i++;
+        }
+
+        return v;
+    }
     // PRECARGA DE VUELOS
     private void PrecargarVuelos()
     {
+        AgregarVuelo(new Vuelo("AB1234", BuscarRuta(1), BuscarAvion("Boeing", "737"), Frecuencia.Lunes));
+        AgregarVuelo(new Vuelo("CD5678", BuscarRuta(2), BuscarAvion("Airbus", "A320"), Frecuencia.Martes));
+        AgregarVuelo(new Vuelo("EF9101", BuscarRuta(3), BuscarAvion("Embraer", "E190"), Frecuencia.Miercoles));
+        AgregarVuelo(new Vuelo("GH1122", BuscarRuta(4), BuscarAvion("Bombardier", "CRJ900"), Frecuencia.Jueves));
+        AgregarVuelo(new Vuelo("IJ3344", BuscarRuta(5), BuscarAvion("Boeing", "737"), Frecuencia.Viernes));
+        AgregarVuelo(new Vuelo("KL5566", BuscarRuta(6), BuscarAvion("Airbus", "A320"), Frecuencia.Sabado));
+        AgregarVuelo(new Vuelo("MN7788", BuscarRuta(7), BuscarAvion("Embraer", "E190"), Frecuencia.Domingo));
+        AgregarVuelo(new Vuelo("OP9900", BuscarRuta(8), BuscarAvion("Bombardier", "CRJ900"), Frecuencia.Lunes));
+        AgregarVuelo(new Vuelo("QR1234", BuscarRuta(9), BuscarAvion("Boeing", "737"), Frecuencia.Martes));
+        AgregarVuelo(new Vuelo("ST5678", BuscarRuta(10), BuscarAvion("Airbus", "A320"), Frecuencia.Miercoles));
         
+        AgregarVuelo(new Vuelo("UV9101", BuscarRuta(11), BuscarAvion("Embraer", "E190"), Frecuencia.Jueves));
+        AgregarVuelo(new Vuelo("WX1122", BuscarRuta(12), BuscarAvion("Bombardier", "CRJ900"), Frecuencia.Viernes));
+        AgregarVuelo(new Vuelo("YZ3344", BuscarRuta(13), BuscarAvion("Boeing", "737"), Frecuencia.Sabado));
+        AgregarVuelo(new Vuelo("AB5566", BuscarRuta(14), BuscarAvion("Airbus", "A320"), Frecuencia.Domingo));
+        AgregarVuelo(new Vuelo("CD7788", BuscarRuta(15), BuscarAvion("Embraer", "E190"), Frecuencia.Lunes));
+        AgregarVuelo(new Vuelo("EF9900", BuscarRuta(16), BuscarAvion("Bombardier", "CRJ900"), Frecuencia.Martes));
+        AgregarVuelo(new Vuelo("GH1234", BuscarRuta(17), BuscarAvion("Boeing", "737"), Frecuencia.Miercoles));
+        AgregarVuelo(new Vuelo("IJ5678", BuscarRuta(18), BuscarAvion("Airbus", "A320"), Frecuencia.Jueves));
+        AgregarVuelo(new Vuelo("KL9101", BuscarRuta(19), BuscarAvion("Embraer", "E190"), Frecuencia.Viernes));
+        AgregarVuelo(new Vuelo("MN1122", BuscarRuta(20), BuscarAvion("Bombardier", "CRJ900"), Frecuencia.Sabado));
+
+        AgregarVuelo(new Vuelo("OP3344", BuscarRuta(21), BuscarAvion("Boeing", "737"), Frecuencia.Domingo));
+        AgregarVuelo(new Vuelo("QR5566", BuscarRuta(22), BuscarAvion("Airbus", "A320"), Frecuencia.Lunes));
+        AgregarVuelo(new Vuelo("ST7788", BuscarRuta(23), BuscarAvion("Embraer", "E190"), Frecuencia.Martes));
+        AgregarVuelo(new Vuelo("UV9900", BuscarRuta(24), BuscarAvion("Bombardier", "CRJ900"), Frecuencia.Miercoles));
+        AgregarVuelo(new Vuelo("WX1234", BuscarRuta(25), BuscarAvion("Boeing", "737"), Frecuencia.Jueves));
+        AgregarVuelo(new Vuelo("YZ5678", BuscarRuta(26), BuscarAvion("Airbus", "A320"), Frecuencia.Viernes));
+        AgregarVuelo(new Vuelo("AB9101", BuscarRuta(27), BuscarAvion("Embraer", "E190"), Frecuencia.Sabado));
+        AgregarVuelo(new Vuelo("CD1122", BuscarRuta(28), BuscarAvion("Bombardier", "CRJ900"), Frecuencia.Domingo));
+        AgregarVuelo(new Vuelo("EF3344", BuscarRuta(29), BuscarAvion("Boeing", "737"), Frecuencia.Lunes));
+        AgregarVuelo(new Vuelo("GH5566", BuscarRuta(30), BuscarAvion("Airbus", "A320"), Frecuencia.Martes));
+
     }
-    
-    // CREACION DE PASAJE
+
+    // CREACION DE PASAJE --------------------------------------------------
     public void AgregarPasaje(Pasaje p)
     {
-        
+        if (p == null) throw new Exception("El pasaje no puede ser nulo");    
+        p.Validar();
+        _pasajes.Add(p);
     }
     
     // PRECARGA DE PASAJES
 
     private void PrecargarPasajes()
     {
-        
+        AgregarPasaje(new Pasaje(BuscarVuelo("AB1234"), BuscarCliente("lewishamilton44@gmail.com"), Equipaje.LIGHT, 1200));
+        AgregarPasaje(new Pasaje(BuscarVuelo("CD5678"), BuscarCliente("fernandoalonso14@gmail.com"), Equipaje.CABINA, 3450));
+        AgregarPasaje(new Pasaje(BuscarVuelo("EF9101"), BuscarCliente("oliverbearman87@gmail.com"), Equipaje.BODEGA, 2870));
+        AgregarPasaje(new Pasaje(BuscarVuelo("GH1122"), BuscarCliente("charlesleclerc@gmail.com"), Equipaje.LIGHT, 1340));
+        AgregarPasaje(new Pasaje(BuscarVuelo("IJ3344"), BuscarCliente("kimiantonelli12@gmail.com"), Equipaje.CABINA, 4260));
+        AgregarPasaje(new Pasaje(BuscarVuelo("KL5566"), BuscarCliente("carlossainz55@gmail.com"), Equipaje.BODEGA, 2180));
+        AgregarPasaje(new Pasaje(BuscarVuelo("MN7788"), BuscarCliente("maria.lopez92@gmail.com"), Equipaje.LIGHT, 1930));
+        AgregarPasaje(new Pasaje(BuscarVuelo("OP9900"), BuscarCliente("john.doe84@yahoo.com"), Equipaje.CABINA, 3050));
+        AgregarPasaje(new Pasaje(BuscarVuelo("QR1234"), BuscarCliente("luigi.rossi@outlook.it"), Equipaje.BODEGA, 4590));
+        AgregarPasaje(new Pasaje(BuscarVuelo("ST5678"), BuscarCliente("emily.jones@protonmail.com"), Equipaje.LIGHT, 1510));
+        AgregarPasaje(new Pasaje(BuscarVuelo("UV9101"), BuscarCliente("lewishamilton44@gmail.com"), Equipaje.CABINA, 2110));
+        AgregarPasaje(new Pasaje(BuscarVuelo("WX1122"), BuscarCliente("fernandoalonso14@gmail.com"), Equipaje.BODEGA, 3750));
+        AgregarPasaje(new Pasaje(BuscarVuelo("YZ3344"), BuscarCliente("oliverbearman87@gmail.com"), Equipaje.LIGHT, 1680));
+        AgregarPasaje(new Pasaje(BuscarVuelo("AB5566"), BuscarCliente("charlesleclerc@gmail.com"), Equipaje.CABINA, 4920));
+        AgregarPasaje(new Pasaje(BuscarVuelo("CD7788"), BuscarCliente("kimiantonelli12@gmail.com"), Equipaje.BODEGA, 1210));
+        AgregarPasaje(new Pasaje(BuscarVuelo("EF9900"), BuscarCliente("carlossainz55@gmail.com"), Equipaje.LIGHT, 2260));
+        AgregarPasaje(new Pasaje(BuscarVuelo("GH1234"), BuscarCliente("maria.lopez92@gmail.com"), Equipaje.CABINA, 1990));
+        AgregarPasaje(new Pasaje(BuscarVuelo("IJ5678"), BuscarCliente("john.doe84@yahoo.com"), Equipaje.BODEGA, 3550));
+        AgregarPasaje(new Pasaje(BuscarVuelo("KL9101"), BuscarCliente("luigi.rossi@outlook.it"), Equipaje.LIGHT, 2850));
+        AgregarPasaje(new Pasaje(BuscarVuelo("MN1122"), BuscarCliente("emily.jones@protonmail.com"), Equipaje.CABINA, 1580));
+        AgregarPasaje(new Pasaje(BuscarVuelo("OP3344"), BuscarCliente("lewishamilton44@gmail.com"), Equipaje.BODEGA, 4330));
+        AgregarPasaje(new Pasaje(BuscarVuelo("QR5566"), BuscarCliente("fernandoalonso14@gmail.com"), Equipaje.LIGHT, 3190));
+        AgregarPasaje(new Pasaje(BuscarVuelo("ST7788"), BuscarCliente("oliverbearman87@gmail.com"), Equipaje.CABINA, 2440));
+        AgregarPasaje(new Pasaje(BuscarVuelo("UV9900"), BuscarCliente("charlesleclerc@gmail.com"), Equipaje.BODEGA, 1630));
+        AgregarPasaje(new Pasaje(BuscarVuelo("WX1234"), BuscarCliente("kimiantonelli12@gmail.com"), Equipaje.LIGHT, 3870));
+
     }
 
     public List<Usuario> ListarClientes()

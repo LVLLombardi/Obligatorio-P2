@@ -7,7 +7,7 @@ class Program
     static Sistema miSistema;
     static void Main(string[] args)
     {
-        miSistema = new Sistema();
+         miSistema = new Sistema();
 
         string opcion = "";
         while (opcion != "0")

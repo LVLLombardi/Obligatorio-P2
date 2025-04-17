@@ -1,3 +1,4 @@
+using System.Security.Cryptography;
 using Dominio.Interfaces;
 
 namespace Dominio;
@@ -17,6 +18,10 @@ public class Vuelo : IValidable
         _frecuencia = frecuencia;
     }
 
+    public string NumeroVuelo
+    {
+        get { return _nroVuelo; }
+    }
 
     public void Validar()
     {

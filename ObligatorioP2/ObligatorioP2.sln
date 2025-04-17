@@ -1,8 +1,16 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.13.35828.75 d17.13
+MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ObligatorioP2", "ObligatorioP2\ObligatorioP2.csproj", "{DA803703-52BE-4D4B-95DF-8EFA4807DBC7}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dominio", "Dominio\Dominio.csproj", "{ABD36CEE-C361-49FE-BF3C-49B69AD56B53}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Elementos de la solución", "Elementos de la solución", "{D107F4C8-89CC-BEA8-D3D7-CA6B7733353D}"
+	ProjectSection(SolutionItems) = preProject
+		..\.gitignore = ..\.gitignore
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -18,5 +26,11 @@ Global
 		{ABD36CEE-C361-49FE-BF3C-49B69AD56B53}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{ABD36CEE-C361-49FE-BF3C-49B69AD56B53}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{ABD36CEE-C361-49FE-BF3C-49B69AD56B53}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {7A647BAC-33AA-4CE4-9A7E-5E713CC6CF39}
 	EndGlobalSection
 EndGlobal
