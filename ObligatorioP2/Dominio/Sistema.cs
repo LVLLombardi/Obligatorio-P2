@@ -26,10 +26,23 @@ public class Sistema
     public void AgregarUsuario(Usuario u)
     {
         if(u == null) throw new Exception("El nombre del usuario no puede ser nulo");
+        if(ExisteUsuarioConCorreo(u.Correo)) throw new Exception("El correo del usuario ya existe");
         u.Validar();
         _usuarios.Add(u);
     }
-    //BUSCAR CLIENTE POR CORREO Y CONTRASEÑA
+    
+    //VALIDACION QUE NO SE ENCUENTREN DOS CORREOS IGUALES
+    private bool ExisteUsuarioConCorreo(string correo)
+    {
+        bool encontrado = false;
+        foreach (Usuario usuario in _usuarios)
+        {
+            if (usuario.Correo == correo) encontrado = true;
+        }
+        return encontrado;
+    }
+    
+    //BUSCAR CLIENTE POR CORREO
     public Cliente BuscarCliente(string correo)
     {
         Cliente u = null;
@@ -43,6 +56,7 @@ public class Sistema
 
         return u; 
     }
+    
     // PRECARGA USUARIOS - CLIENTE PREMIUM - CLIENTE OCASIONAL - ADMINISTRADORES
     private void PrecargarUsuarios()
     {
@@ -66,7 +80,7 @@ public class Sistema
     public void AgregarAeropuerto(Aeropuerto aeropuerto)
     {
         if (aeropuerto == null) throw new Exception("El Aeropuerto no puede ser nulo");
-        if (BuscarAeropuertoPorCodigo(aeropuerto.Codigo)!= null) throw new Exception("El aeropuerto ya está cargado");//validacion de que aeropuerto ya no esté creado
+        if (BuscarAeropuertoPorCodigo(aeropuerto.Codigo) != null) throw new Exception("El aeropuerto ya está existe en el Sistema");//validacion de que aeropuerto ya no esté creado
         aeropuerto.Validar();
         _aeropuertos.Add(aeropuerto);
     }
@@ -119,11 +133,11 @@ public class Sistema
     }
 
     //BUSCAR RUTA POR ID
-    public Ruta BuscarRuta(int IdRuta)
+    public Ruta BuscarRuta(int idRuta)
     {
         foreach (Ruta r in _rutas)
         {
-            if (r.Id == IdRuta) return r;
+            if (r.Id == idRuta) return r;
         }
         return null;
     }
@@ -292,14 +306,14 @@ public class Sistema
 
     }
 
-    public List<Usuario> ListarClientes()
+    public List<Cliente> ListarClientes()
     {
-        List<Usuario> clientes = new List<Usuario>();
+        List<Cliente> clientes = new List<Cliente>();
         foreach (Usuario u in _usuarios)
         {
-            if (u is Cliente)
+            if (u is Cliente cli)
             {
-                clientes.Add(u);
+                clientes.Add(cli);
             }
         }
         return clientes;

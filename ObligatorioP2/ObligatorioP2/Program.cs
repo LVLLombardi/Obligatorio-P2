@@ -103,35 +103,7 @@ class Program
 
         return numero;
     }
-
-    /*static void CrearAeropuerto()
-    {
-        Console.Clear();
-        Console.WriteLine("****** CREAR AEROPUERTO ******");
-        Console.WriteLine();
-
-        string codigo = PedirPalabras("Ingrese el Código IATA para el aeropuerto: ");
-        string ciudad = PedirPalabras("Ingrese ciudad para el aeropuerto: ");
-        double costoOperacion = PedirNumeros("Ingrese el costo operacion: ");
-        double costoTasas = PedirNumeros("Ingrese el Costo de Tasas: ");
-
-        try
-        {
-            if (string.IsNullOrEmpty(codigo) || codigo.Length != 3) throw new Exception("El código IATA no puede estar vacío y debe tener 3 letras");
-            if (string.IsNullOrEmpty(ciudad)) throw new Exception("La ciudad no puede ser vacía");
-            if (costoOperacion < 0) throw new Exception("El costo debe ser un número positivo");
-            if (costoTasas < 0) throw new Exception("El costo de las tasas no puede ser negativo");
-            
-            Aeropuerto a = new Aeropuerto(codigo, ciudad, costoOperacion, costoTasas);
-            miSistema.CrearAeropuerto(a);
-            
-            MostrarExito("El aeropuerto se ha creado correctamente");
-        }
-        catch (Exception ex)
-        {
-            MostrarError(ex.Message);
-        }
-    }*/
+    
 
     static void ListarTodosLosClientes()
     {
@@ -143,9 +115,9 @@ class Program
 
         try
         {
-            List<Usuario> clientes = miSistema.ListarClientes();
+            List<Cliente> clientes = miSistema.ListarClientes();
             if (clientes.Count == 0) throw new Exception("No hay clientes registrados en el Sistema");
-            foreach (Usuario c in clientes)
+            foreach (Cliente c in clientes)
             {
                 Console.WriteLine(c.ToString());
             }
