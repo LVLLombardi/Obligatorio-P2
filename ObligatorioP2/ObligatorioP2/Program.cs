@@ -168,7 +168,7 @@ class Program
         Console.ForegroundColor = ConsoleColor.Gray;
         Console.WriteLine();
 
-        string codigoIngresado = PedirIATA("Ingrese código IATA para búsqueda de vuelos: ").ToUpper();
+        string codigoIngresado = PedirIATA("Ingrese código IATA para búsqueda de vuelos: ");
         Aeropuerto aeropuerto = miSistema.BuscarAeropuertoPorCodigo(codigoIngresado);
 
 

@@ -40,6 +40,7 @@ public class Aeropuerto : IValidable
         }
         else
         {
+            codigo = codigo.ToUpper();
             for (int i = 0; i < 3; i++)
             {
                 char c = codigo[i];
