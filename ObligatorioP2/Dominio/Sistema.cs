@@ -74,6 +74,7 @@ public class Sistema
     // PRECARGA DE AEROPUERTOS
     private void PrecargarAeropuertos()
     {
+        AgregarAeropuerto(new Aeropuerto("MAD", "Madrid", 130, 110));
         AgregarAeropuerto(new Aeropuerto("BCN", "Barcelona", 110, 95));
         AgregarAeropuerto(new Aeropuerto("JFK", "Nueva York", 150, 130));
         AgregarAeropuerto(new Aeropuerto("CDG", "París", 140, 120));
@@ -304,4 +305,17 @@ public class Sistema
         }
         return clientes;
     }
+    public List<Vuelo> ListarVuelos()
+    {
+        List<Vuelo> vuelos = new List<Vuelo>();
+        foreach (Vuelo v in _vuelos)
+        {
+            if (v is Vuelo)
+            {
+                vuelos.Add(v);
+            }
+        }
+        return vuelos;
+    }
+    
 }

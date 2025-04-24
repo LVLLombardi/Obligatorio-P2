@@ -22,6 +22,20 @@ public class Vuelo : IValidable
     {
         get { return _nroVuelo; }
     }
+    public Avion Avion
+    {
+        get { return _avion; }
+    }
+
+    public Ruta Ruta
+    {
+        get { return _ruta; }
+    }
+    public Enum Frecuencia
+    {
+        get { return _frecuencia; }
+    }
+    
 
     public void Validar()
     {

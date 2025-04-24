@@ -31,7 +31,7 @@ public class Aeropuerto : IValidable
     }
 
     // FUNCION PARA VALIDAR EL CODIGO IATA , VACIO, LENGTH DISTINTO DE 3 Y QUE TENGA LETRAS
-    public bool ValidarCodigoIata(string codigo)
+    public static bool ValidarCodigoIata(string codigo) //SE CAMBIA A STATIC
     {
         bool esValido = true;
         if (string.IsNullOrEmpty(codigo) || codigo.Length != 3)
@@ -51,4 +51,10 @@ public class Aeropuerto : IValidable
         }
         return esValido;
     }
+
+    public override string ToString()
+    {
+        return $"{Codigo}";
+    }
+
 }
