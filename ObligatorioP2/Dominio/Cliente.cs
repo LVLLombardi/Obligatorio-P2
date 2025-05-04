@@ -15,6 +15,11 @@ public abstract class Cliente : Usuario
         _nacionalidad = nacionalidad;
     }
 
+    public string Nombre
+    {
+        get { return _nombre; }
+    }
+
     public override void Validar()
     {
         base.Validar();

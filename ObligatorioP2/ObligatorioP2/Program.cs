@@ -29,6 +29,7 @@ class Program
                     PressToContinue();
                     break;
                 case "4":
+                    ListarPasajesEntreDosFechas();
                     PressToContinue();
                     break;
                 case "5":
@@ -57,7 +58,7 @@ class Program
         Console.WriteLine("1 - Listado de Todos los Clientes");
         Console.WriteLine("2 - Listar Todos los Vuelos según código de Aeropuerto");
         Console.WriteLine("3 - ");
-        Console.WriteLine("4 - ");
+        Console.WriteLine("4 - Listar pasajes entre dos fechas");
         Console.WriteLine("5 - ");
         Console.WriteLine("0 - Salir");
     }
@@ -82,29 +83,6 @@ class Program
         Console.ForegroundColor = ConsoleColor.Gray;
     }
     
-    static string PedirPalabras(string mensaje)
-    {
-        Console.Write(mensaje);
-        string dato = Console.ReadLine();
-        return dato;
-    }
-    
-    static int PedirNumeros(string mensaje)
-    {
-        bool exito = false;
-        int numero = 0;
-        while (!exito)
-        {
-            Console.Write(mensaje);
-            exito = int.TryParse(Console.ReadLine(), out numero);
-
-            if (!exito) MostrarError("ERROR: Debe ingresar solo numeros");
-        }
-
-        return numero;
-    }
-    
-
     static void ListarTodosLosClientes()
     {
         Console.Clear();
@@ -127,5 +105,27 @@ class Program
             MostrarError(e.Message);
         }
     }
-    
+
+    static void ListarPasajesEntreDosFechas()
+    {
+        Console.Clear();
+        Console.ForegroundColor = ConsoleColor.Magenta;
+        Console.WriteLine("**** LISTAR PASAJES ENTRE DOS FECHAS ****");
+        Console.ForegroundColor = ConsoleColor.Gray;
+        Console.WriteLine();
+
+        try
+        {
+            List<Pasaje> pasajes = miSistema.ListarPasajesSegunFechas(new DateTime(2025, 6, 1), new DateTime(2025, 6, 10));
+            if (pasajes.Count == 0) throw new Exception("No hay pasajes registrados en el Sistema");
+            foreach (Pasaje p in pasajes)
+            {
+                Console.WriteLine(p.ToString());
+            }
+        }
+        catch (Exception e)
+        {
+            MostrarError(e.Message);
+        }
+    }
 }

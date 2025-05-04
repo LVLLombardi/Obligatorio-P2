@@ -33,22 +33,22 @@ public class Vuelo : IValidable
     public bool ValidarNroVuelo(string nroVuelo)
     {
         bool esValido = true;
-        if (string.IsNullOrEmpty(nroVuelo) || nroVuelo.Length < 3 || nroVuelo.Length > 6)
+        if (string.IsNullOrEmpty(nroVuelo) || nroVuelo.Length < 3 || nroVuelo.Length > 6) esValido = false;
+        
+        
+        for (int i = 0; i < 2; i++)
         {
-            esValido = false;
+            if (!char.IsLetter(nroVuelo[i]))
+                esValido = false;
         }
-        else
+        
+        for (int i = 2; i < nroVuelo.Length; i++)
         {
-            for (int i = 0; i < 2; i++)
-            {
-                char c = nroVuelo[i];
-                if (c < 'A' || c > 'Z')
-                {
-                    esValido = false;
-                }
-            }
+            if (!char.IsDigit(nroVuelo[i]))
+                esValido = false;
+        }
             
-            int cantDigitos = nroVuelo.Length - 2;
+            /*int cantDigitos = nroVuelo.Length - 2;
 
             if (cantDigitos < 1 || cantDigitos > 4)
             {
@@ -64,13 +64,13 @@ public class Vuelo : IValidable
                         esValido = false;
                     }
                 }
-            }
-        }
+            }*/
+        
         return esValido;
     }
 
     public override string ToString()
     {
-        return $"Vuelo -> Número de Vuelo: {_nroVuelo} - Modelo Avión: {_avion.Modelo} - Ruta: {_ruta.AeropuertoSalida} - {_ruta.AeropuertoLlegada} - Frecuencia: {_frecuencia}";
+        return $"Vuelo -> Número de Vuelo: {_nroVuelo} - Modelo Avión: {_avion.Modelo} - {_ruta.ToString()} - Frecuencia: {_frecuencia}";
     }
 }
