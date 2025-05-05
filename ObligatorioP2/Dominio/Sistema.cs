@@ -29,7 +29,7 @@ public class Sistema
         u.Validar();
         _usuarios.Add(u);
     }
-    //BUSCAR CLIENTE POR CORREO Y CONTRASEÑA
+    // BUSCAR CLIENTE POR CORREO
     public Cliente BuscarCliente(string correo)
     {
         Cliente u = null;
@@ -42,6 +42,21 @@ public class Sistema
         }
 
         return u; 
+    }
+
+    // BUSCAR CLIENTE POR DOCUMENTO
+    public Cliente BuscarDocumento(string documento)
+    {
+        Cliente u = null;
+        int i = 0;
+
+        while (u == null && i < _usuarios.Count)
+        {
+            if (_usuarios[i] is Cliente c && c.Documento == documento) u = c;
+            i++;
+        }
+
+        return u;
     }
     // PRECARGA USUARIOS - CLIENTE PREMIUM - CLIENTE OCASIONAL - ADMINISTRADORES
     private void PrecargarUsuarios()
