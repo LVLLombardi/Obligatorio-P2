@@ -28,7 +28,7 @@ public abstract class Usuario : IValidable
     }
 
     // VERIFICACION FUTURA
-    public override bool Equals(object obj)
+    public override bool Equals(object? obj)
     {
         Usuario u = obj as Usuario;
         return u != null && u.Correo == _correo;

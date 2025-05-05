@@ -71,6 +71,6 @@ public class Vuelo : IValidable
 
     public override string ToString()
     {
-        return $"Vuelo -> Número de Vuelo: {_nroVuelo} - Modelo Avión: {_avion.Modelo} - {_ruta.ToString()} - Frecuencia: {_frecuencia}";
+        return $"Número de Vuelo: {_nroVuelo}";
     }
 }
