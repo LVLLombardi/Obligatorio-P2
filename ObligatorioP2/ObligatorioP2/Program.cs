@@ -35,12 +35,6 @@ class Program
                     ListarPasajesEntreDosFechas();
                     PressToContinue();
                     break;
-                case "5":
-                    PressToContinue();
-                    break;
-                case "6":
-                    PressToContinue();
-                    break;
                 case "0":
                     Console.WriteLine("Saliendo del Sistema...");
                     break;
@@ -62,7 +56,6 @@ class Program
         Console.WriteLine("2 - ");
         Console.WriteLine("3 - Alta de cliente ocasional");
         Console.WriteLine("4 - Listar pasajes entre dos fechas");
-        Console.WriteLine("5 - ");
         Console.WriteLine("0 - Salir");
     }
 
