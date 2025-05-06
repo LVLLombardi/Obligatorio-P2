@@ -14,6 +14,10 @@ public abstract class Cliente : Usuario
         _nombre = nombre;
         _nacionalidad = nacionalidad;
     }
+    public string Documento
+    {
+        get { return _documento; }
+    }
 
     public string Nombre
     {
