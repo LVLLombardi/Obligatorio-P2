@@ -59,7 +59,7 @@ class Program
         Console.WriteLine("****** MENU ******");
         Console.ForegroundColor = ConsoleColor.Gray;
         Console.WriteLine("1 - Listado de Todos los Clientes");
-        Console.WriteLine("2 - Listar Todos los Vuelos según código de Aeropuerto");
+        Console.WriteLine("2 - ");
         Console.WriteLine("3 - Alta de cliente ocasional");
         Console.WriteLine("4 - Listar pasajes entre dos fechas");
         Console.WriteLine("5 - ");
@@ -152,7 +152,7 @@ class Program
             MostrarError(e.Message);
         }
     }
-}
+
     static void AltaClienteOcasional()
     {
         Console.Clear();
@@ -199,7 +199,5 @@ class Program
         }
         return esElegible;
     }
-
-
 }        
 
