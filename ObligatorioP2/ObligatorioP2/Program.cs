@@ -108,21 +108,21 @@ class Program
         string dato = Console.ReadLine();
         return dato;
     }
-
-    static int PedirNumeros(string mensaje)
+    
+    static DateTime PedirFecha(string mensaje)
     {
         bool exito = false;
-        int numero = 0;
+        DateTime fecha = new DateTime();
         while (!exito)
         {
-            Console.Write(mensaje);
-            exito = int.TryParse(Console.ReadLine(), out numero);
+            Console.Write(mensaje + " [DD/MM/YYYY]:");
+            exito = DateTime.TryParse(Console.ReadLine(), out fecha);
 
-            if (!exito) MostrarError("ERROR: Debe ingresar solo numeros");
+            if (!exito) MostrarError("ERROR: Debe ingresar una fecha en formato DD/MM/YYYY");
         }
-
-        return numero;
+        return fecha;
     }
+    
     static void ListarPasajesEntreDosFechas()
     {
         Console.Clear();
@@ -133,7 +133,9 @@ class Program
 
         try
         {
-            List<Pasaje> pasajes = miSistema.ListarPasajesSegunFechas(new DateTime(2025, 6, 1), new DateTime(2025, 6, 10));
+            DateTime fechaInicio = PedirFecha("Ingrese la fecha de inicio");
+            DateTime fechaFin = PedirFecha("Ingresar la fecha de fin");
+            List<Pasaje> pasajes = miSistema.ListarPasajesSegunFechas(fechaInicio, fechaFin);
             if (pasajes.Count == 0) throw new Exception("No hay pasajes registrados en el Sistema");
             foreach (Pasaje p in pasajes)
             {
