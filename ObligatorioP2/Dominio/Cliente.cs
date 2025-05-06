@@ -19,6 +19,11 @@ public abstract class Cliente : Usuario
         get { return _documento; }
     }
 
+    public string Nombre
+    {
+        get { return _nombre; }
+    }
+
     public override void Validar()
     {
         base.Validar();
@@ -31,6 +36,8 @@ public abstract class Cliente : Usuario
     {
         return $"Nombre Cliente: {_nombre} - {base.ToString()} - Nacionalidad: {_nacionalidad}";
     }
+    
+    
     public void Login()
     {
         //LOGICA SEGUNDO ENTREGA

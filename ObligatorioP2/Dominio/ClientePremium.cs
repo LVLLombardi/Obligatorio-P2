@@ -17,6 +17,6 @@ public class ClientePremium:Cliente
 
     public override string ToString()
     {
-        return $"Cliente Premium -> {base.ToString()} - Puntos: {_puntos}";
+        return $"{base.ToString()} - Puntos: {_puntos}";
     }
 }

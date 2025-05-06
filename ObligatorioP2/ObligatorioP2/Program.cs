@@ -32,6 +32,7 @@ class Program
                     PressToContinue();
                     break;
                 case "4":
+                    ListarPasajesEntreDosFechas();
                     PressToContinue();
                     break;
                 case "5":
@@ -60,7 +61,7 @@ class Program
         Console.WriteLine("1 - Listado de Todos los Clientes");
         Console.WriteLine("2 - Listar Todos los Vuelos según código de Aeropuerto");
         Console.WriteLine("3 - Alta de cliente ocasional");
-        Console.WriteLine("4 - ");
+        Console.WriteLine("4 - Listar pasajes entre dos fechas");
         Console.WriteLine("5 - ");
         Console.WriteLine("0 - Salir");
     }
@@ -84,6 +85,29 @@ class Program
         Console.WriteLine(mensaje);
         Console.ForegroundColor = ConsoleColor.Gray;
     }
+    
+    static void ListarTodosLosClientes()
+    {
+        Console.Clear();
+        Console.ForegroundColor = ConsoleColor.Magenta;
+        Console.WriteLine("**** LISTAR TODOS LOS CLIENTES ****");
+        Console.ForegroundColor = ConsoleColor.Gray;
+        Console.WriteLine();
+
+        try
+        {
+            List<Cliente> clientes = miSistema.ListarClientes();
+            if (clientes.Count == 0) throw new Exception("No hay clientes registrados en el Sistema");
+            foreach (Cliente c in clientes)
+            {
+                Console.WriteLine(c.ToString());
+            }
+        }
+        catch (Exception e)
+        {
+            MostrarError(e.Message);
+        }
+    }
 
     static string PedirPalabras(string mensaje)
     {
@@ -106,21 +130,21 @@ class Program
 
         return numero;
     }
-    static void ListarTodosLosClientes()
+    static void ListarPasajesEntreDosFechas()
     {
         Console.Clear();
         Console.ForegroundColor = ConsoleColor.Magenta;
-        Console.WriteLine("**** LISTAR TODOS LOS CLIENTES ****");
+        Console.WriteLine("**** LISTAR PASAJES ENTRE DOS FECHAS ****");
         Console.ForegroundColor = ConsoleColor.Gray;
         Console.WriteLine();
 
         try
         {
-            List<Usuario> clientes = miSistema.ListarClientes();
-            if (clientes.Count == 0) throw new Exception("No hay clientes registrados en el Sistema");
-            foreach (Usuario c in clientes)
+            List<Pasaje> pasajes = miSistema.ListarPasajesSegunFechas(new DateTime(2025, 6, 1), new DateTime(2025, 6, 10));
+            if (pasajes.Count == 0) throw new Exception("No hay pasajes registrados en el Sistema");
+            foreach (Pasaje p in pasajes)
             {
-                Console.WriteLine(c.ToString());
+                Console.WriteLine(p.ToString());
             }
         }
         catch (Exception e)
@@ -128,6 +152,7 @@ class Program
             MostrarError(e.Message);
         }
     }
+}
     static void AltaClienteOcasional()
     {
         Console.Clear();
@@ -177,5 +202,4 @@ class Program
 
 
 }        
-
 
