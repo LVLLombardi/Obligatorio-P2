@@ -25,7 +25,7 @@ public class Vuelo : IValidable
 
     public void Validar()
     {
-        if (!ValidarNroVuelo(_nroVuelo)) throw new Exception("El número de vuelo no puede ser vacío y debe contener 2 letras y entre 1 y 4 números"); // VALIDAR ALFANUMERICO
+        if (!ValidarNroVuelo(_nroVuelo)) throw new Exception("El número de vuelo no puede ser vacío y debe contener 2 letras y entre 1 y 4 números"); 
         if (_ruta == null) throw new Exception("La ruta no puede ser nula");
         if (_avion == null) throw new Exception("El avion no puede ser nulo");
     }
@@ -47,25 +47,6 @@ public class Vuelo : IValidable
             if (!char.IsDigit(nroVuelo[i]))
                 esValido = false;
         }
-            
-            /*int cantDigitos = nroVuelo.Length - 2;
-
-            if (cantDigitos < 1 || cantDigitos > 4)
-            {
-                esValido = false;
-            }
-            else
-            {
-                for (int i = 2; i < nroVuelo.Length; i++)
-                {
-                    char c = nroVuelo[i];
-                    if (c < '0' || c > '9')
-                    {
-                        esValido = false;
-                    }
-                }
-            }*/
-        
         return esValido;
     }
 
