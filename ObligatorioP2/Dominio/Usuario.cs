@@ -31,7 +31,7 @@ public abstract class Usuario : IValidable
     public override bool Equals(object? obj)
     {
         Usuario u = obj as Usuario;
-        return u != null && u.Correo == _correo;
+        return u != null && u.Correo == this._correo;
     }
 
     public override string ToString()

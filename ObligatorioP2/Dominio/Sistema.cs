@@ -26,21 +26,9 @@ public class Sistema
     public void AgregarUsuario(Usuario u)
     {
         if(u == null) throw new Exception("El nombre del usuario no puede ser nulo");
-        if(ExisteUsuarioConCorreo(u.Correo)) throw new Exception("El correo del usuario ya existe");
+        if(_usuarios.Contains(u)) throw new Exception("El usuario ya existe con el correo dado");
         u.Validar();
         _usuarios.Add(u);
-    }
-
-    
-    //VALIDACION QUE NO SE ENCUENTREN DOS CORREOS IGUALES
-    private bool ExisteUsuarioConCorreo(string correo)
-    {
-        bool encontrado = false;
-        foreach (Usuario usuario in _usuarios)
-        {
-            if (usuario.Correo == correo) encontrado = true;
-        }
-        return encontrado;
     }
    
     // BUSCAR CLIENTE POR CORREO
@@ -52,22 +40,6 @@ public class Sistema
         while (u == null && i < _usuarios.Count)
         {
             if (_usuarios[i] is Cliente c && c.Correo == correo) u = c; // no hay que usar un equals?
-            i++;
-        }
-
-        return u; 
-    }
-
-
-    // BUSCAR CLIENTE POR DOCUMENTO
-    public Cliente BuscarDocumento(string documento)
-    {
-        Cliente u = null;
-        int i = 0;
-
-        while (u == null && i < _usuarios.Count)
-        {
-            if (_usuarios[i] is Cliente c && c.Documento == documento) u = c;
             i++;
         }
 
@@ -97,7 +69,7 @@ public class Sistema
     public void AgregarAeropuerto(Aeropuerto aeropuerto)
     {
         if (aeropuerto == null) throw new Exception("El Aeropuerto no puede ser nulo");
-        if (BuscarAeropuertoPorCodigo(aeropuerto.Codigo) != null) throw new Exception("El aeropuerto ya está existe en el Sistema");//validacion de que aeropuerto ya no esté creado
+        if(_aeropuertos.Contains(aeropuerto)) throw new Exception("El aeropuerto ya está existe en el Sistema");
         aeropuerto.Validar();
         _aeropuertos.Add(aeropuerto);
     }
@@ -175,6 +147,7 @@ public class Sistema
     {
         if (r == null) throw new Exception("La Ruta no puede ser nula");
         r.Validar();
+        if(_rutas.Contains(r)) throw new Exception("La ruta dada ya existe en el Sistema");
         _rutas.Add(r);
     }
 
@@ -223,10 +196,10 @@ public class Sistema
     }
 
     // CREACION DE AVION
-    public void AgregarAvion(Avion a) // validacion extra de que no haya un fabricante y modelo iguales
+    public void AgregarAvion(Avion a) 
     {
         if (a == null) throw new Exception("El avion no puede ser nulo");
-        if (BuscarAvion(a.ModeloAvion,a.FabricanteAvion) != null) throw new Exception("Ya existe un avion con el mismo modelo y fabricante");
+        if (_aviones.Contains(a)) throw new Exception("Ya existe un avion con el id dado");
         a.Validar();
         _aviones.Add(a);
     }
@@ -270,6 +243,7 @@ public class Sistema
     {
         if (v == null) throw new Exception("El vuelo no puede ser nulo");
         v.Validar();
+        if(_vuelos.Contains(v)) throw new Exception("Ya existe un vuelo con el número de vuelo dado");
         _vuelos.Add(v);
     }
     //BUSCAR VUELO POR NUMERO DE VUELO
@@ -318,7 +292,7 @@ public class Sistema
     // CREACION DE PASAJE 
     public void AgregarPasaje(Pasaje p)
     {
-        if (p == null) throw new Exception("El pasaje no puede ser nulo");    
+        if (p == null) throw new Exception("El pasaje no puede ser nulo");
         p.Validar();
         _pasajes.Add(p);
     }

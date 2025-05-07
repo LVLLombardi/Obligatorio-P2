@@ -51,6 +51,12 @@ public class Aeropuerto : IValidable
         return esValido;
     }
 
+    public override bool Equals(object obj)
+    {
+        Aeropuerto a = obj as Aeropuerto;
+        return a != null && this._codigoIATA == a._codigoIATA;
+    }
+    
     public override string ToString()
     {
         return $"Aeropuerto -> Codigo IATA: {_codigoIATA} -  Ciudad: {_ciudad} - Costo operación : {_costoOp} - Costo tasas : {_costoTasas}";
