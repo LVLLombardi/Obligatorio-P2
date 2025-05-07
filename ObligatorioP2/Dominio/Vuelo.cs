@@ -33,19 +33,16 @@ public class Vuelo : IValidable
     public bool ValidarNroVuelo(string nroVuelo)
     {
         bool esValido = true;
-        if (string.IsNullOrEmpty(nroVuelo) || nroVuelo.Length < 3 || nroVuelo.Length > 6) esValido = false;
-        
+        if (string.IsNullOrEmpty(nroVuelo) || nroVuelo.Length < 3 || nroVuelo.Length > 6) throw new Exception("El número de vuelo debe tener entre 3 y 6 de largo");
         
         for (int i = 0; i < 2; i++)
         {
-            if (!char.IsLetter(nroVuelo[i]))
-                esValido = false;
+            if (!char.IsLetter(nroVuelo[i])) throw new Exception("El número de vuelo es inválido.");
         }
         
         for (int i = 2; i < nroVuelo.Length; i++)
         {
-            if (!char.IsDigit(nroVuelo[i]))
-                esValido = false;
+            if (!char.IsDigit(nroVuelo[i])) throw new Exception("El número de vuelo debe tener entre 1 y 4 números.");
         }
         return esValido;
     }

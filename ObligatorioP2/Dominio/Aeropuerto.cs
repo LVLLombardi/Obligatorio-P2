@@ -24,8 +24,7 @@ public class Aeropuerto : IValidable
 
     public void Validar()
     {
-        ValidarCodigoIata(_codigoIATA);
-        //if (!ValidarCodigoIata(_codigoIATA)) throw new Exception("El código IATA es un identificador único de 3 letras"); 
+        if (!ValidarCodigoIata(_codigoIATA)) throw new Exception("El código IATA es un identificador único de 3 letras"); 
         if (string.IsNullOrEmpty(_ciudad)) throw new Exception("La ciudad no puede ser vacía");
         if (_costoOp < 0) throw new Exception("El costo de Operación debe ser positivo.");
         if(_costoTasas < 0) throw new Exception("El costo de Tasas es obligatorio y debe ser positivo");
@@ -35,16 +34,11 @@ public class Aeropuerto : IValidable
     public bool ValidarCodigoIata(string codigo)
     {
         bool esValido = true;
-        if (string.IsNullOrEmpty(codigo) || codigo.Length != 3)
-        {
-            esValido = false;
-            throw new Exception("El código IATA debe tener exactamente 3 caracteres.");
-        }
-       
+        if (string.IsNullOrEmpty(codigo) || codigo.Length != 3) throw new Exception("El código IATA debe tener exactamente 3 caracteres.");
+        
         for (int i = 0; i < 3; i++)
         {
             char c = codigo[i];
-            esValido = false;
             if (!Char.IsLetter(c)) throw new Exception($"El carácter en la posición {i + 1} no es una letra válida.");
         }
         
