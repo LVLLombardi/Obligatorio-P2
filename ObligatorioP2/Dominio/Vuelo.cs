@@ -50,6 +50,12 @@ public class Vuelo : IValidable
         return esValido;
     }
 
+    public override bool Equals(object obj)
+    {
+        Vuelo v = obj as Vuelo;
+        return v != null && this._nroVuelo == v._nroVuelo;
+    }
+
     public override string ToString()
     {
         return $"Número de Vuelo: {_nroVuelo}";

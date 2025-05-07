@@ -4,6 +4,8 @@ namespace Dominio;
 
 public class Avion : IValidable
 {
+    private int _id;
+    private static int s_ultId = 1;
     private string _fabricante;
     private string _modelo;
     private int _cantAsientos;
@@ -16,6 +18,7 @@ public class Avion : IValidable
     }
     public Avion(string fabricante, string modelo, int cantAsientos, double alcanceKm, double costoOperacion)
     {
+        _id = s_ultId++;
         _fabricante = fabricante;
         _modelo = modelo;
         _cantAsientos = cantAsientos;
@@ -40,6 +43,12 @@ public class Avion : IValidable
         if (_costoOperacion < 0) throw new Exception("El costo de operación por km no puede ser menor a cero");
     }
 
+    public override bool Equals(object obj)
+    {
+        Avion a = obj as Avion;
+        return a != null && this._id == a._id;
+    }
+    
     public override string ToString()
     {
         return $"Modelo: {_modelo}";
