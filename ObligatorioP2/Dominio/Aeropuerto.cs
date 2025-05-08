@@ -31,7 +31,7 @@ public class Aeropuerto : IValidable
     }
 
     // FUNCION PARA VALIDAR EL CODIGO IATA , VACIO, LENGTH DISTINTO DE 3 Y QUE TENGA LETRAS
-    public bool ValidarCodigoIata(string codigo)
+    public static bool ValidarCodigoIata(string codigo)
     {
         bool esValido = true;
         if (string.IsNullOrEmpty(codigo) || codigo.Length != 3) throw new Exception("El código IATA debe tener exactamente 3 caracteres.");
@@ -54,5 +54,11 @@ public class Aeropuerto : IValidable
     public override string ToString()
     {
         return $"Aeropuerto -> Codigo IATA: {_codigoIATA} -  Ciudad: {_ciudad} - Costo operación : {_costoOp} - Costo tasas : {_costoTasas}";
+    }
+
+    public override bool Equals (object? obj)
+    {
+        Aeropuerto a = obj as Aeropuerto;
+        return a != null && this._codigoIATA == a._codigoIATA;
     }
 }

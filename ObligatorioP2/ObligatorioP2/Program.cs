@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Data;
+using System.Security.Cryptography.X509Certificates;
 using Dominio;
 
 namespace ObligatorioP2;
@@ -25,6 +26,7 @@ class Program
                     PressToContinue();
                     break;
                 case "2":
+                    ListarVuelosPorIATA();
                     PressToContinue();
                     break;
                 case "3":
@@ -53,7 +55,7 @@ class Program
         Console.WriteLine("****** MENU ******");
         Console.ForegroundColor = ConsoleColor.Gray;
         Console.WriteLine("1 - Listado de Todos los Clientes");
-        Console.WriteLine("2 - ");
+        Console.WriteLine("2 - Listar vuelos por codigo IATA");
         Console.WriteLine("3 - Alta de cliente ocasional");
         Console.WriteLine("4 - Listar pasajes entre dos fechas");
         Console.WriteLine("0 - Salir");
@@ -78,7 +80,7 @@ class Program
         Console.WriteLine(mensaje);
         Console.ForegroundColor = ConsoleColor.Gray;
     }
-    
+
     static void ListarTodosLosClientes()
     {
         Console.Clear();
@@ -122,7 +124,30 @@ class Program
         }
         return fecha;
     }
-    
+    static void ListarVuelosPorIATA()
+    {
+        Console.Clear();
+        Console.ForegroundColor = ConsoleColor.Magenta;
+        Console.WriteLine("**** LISTAR VUELOS POR CODIGO IATA ****");
+        Console.ForegroundColor = ConsoleColor.Gray;
+        Console.WriteLine();
+
+        try
+        {
+            string codigoIATA = PedirPalabras("Ingrese codigo IATA: ");
+            List<Vuelo> vuelos = miSistema.ListarVuelos(codigoIATA);
+            if (vuelos.Count == 0) throw new Exception("No hay vuelos registrados en el sistema");
+            foreach (Vuelo v in vuelos)
+            {
+                Console.WriteLine(v.ToString());
+            }
+        }
+        catch (Exception e)
+        {
+            MostrarError("La busqueda no fue exitosa: " + e.Message);
+        }
+    }
+
     static void ListarPasajesEntreDosFechas()
     {
         Console.Clear();
@@ -159,10 +184,6 @@ class Program
         try
         {
             string correo = PedirPalabras("Ingrese correo del cliente: ");
-            
-            Cliente existente = miSistema.BuscarCliente(correo);
-
-            if (existente != null) throw new Exception("Ya existe un cliente con ese correo.");
             string contrasenia = PedirPalabras("Ingrese contraseña: ");
             string documento = PedirPalabras("Ingrese documento: ");
             string nombre = PedirPalabras("Ingrese nombre: ");
@@ -181,18 +202,9 @@ class Program
     }
     public static bool GenerarElegible()
     {
-        bool esElegible= false;
         Random random = new Random();
-        int n = random.Next(0, 2);
-        if (n == 0)
-        {
-            esElegible = false;
-        }
-        else
-        {
-            esElegible = true;
-        }
-        return esElegible;
+        return random.Next(0, 2)==1;
+        
     }
 }        
 
