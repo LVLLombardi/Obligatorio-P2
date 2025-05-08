@@ -33,6 +33,10 @@ public class Vuelo : IValidable
         if (_avion == null) throw new Exception("El avion no puede ser nulo");
     }
 
+    public bool ContieneAeropuerto(Aeropuerto a)
+    {
+        return _ruta.AeropuertoSalida.Equals(a)||_ruta.AeropuertoLlegada.Equals(a);
+    }
     public bool ValidarNroVuelo(string nroVuelo)
     {
         bool esValido = true;

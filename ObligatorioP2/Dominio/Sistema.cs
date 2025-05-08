@@ -330,14 +330,11 @@ public class Sistema
     public List<Vuelo> ListarVuelos(string codigoIATA)
     {
         List<Vuelo> vuelos = new List<Vuelo>();
+        Aeropuerto a = BuscarAeropuertoPorCodigo(codigoIATA);
 
         foreach (Vuelo v in _vuelos)
-        {
-            if (v.Ruta.AeropuertoSalida.Codigo.Equals(codigoIATA, StringComparison.OrdinalIgnoreCase) || v.Ruta.AeropuertoLlegada.Codigo.Equals(codigoIATA, StringComparison.OrdinalIgnoreCase))
-
-            {
-                vuelos.Add(v);
-            }
+        { 
+            if(v.ContieneAeropuerto(a)) vuelos.Add(v);
         }
 
         return vuelos;
