@@ -8,9 +8,9 @@ public class Vuelo : IValidable
     private string _nroVuelo;
     private Ruta _ruta;
     private Avion _avion;
-    private Frecuencia _frecuencia;
+    private List <DayOfWeek> _frecuencia;
 
-    public Vuelo(string nroVuelo, Ruta ruta, Avion avion, Frecuencia frecuencia)
+    public Vuelo(string nroVuelo, Ruta ruta, Avion avion, List<DayOfWeek> frecuencia)
     {
         _nroVuelo = nroVuelo;
         _ruta = ruta;
@@ -22,7 +22,10 @@ public class Vuelo : IValidable
     {
         get { return _nroVuelo; }
     }
-
+    public Ruta Ruta
+    {
+        get { return _ruta; }
+    }
     public void Validar()
     {
         if (!ValidarNroVuelo(_nroVuelo)) throw new Exception("El número de vuelo no puede ser vacío y debe contener 2 letras y entre 1 y 4 números"); 
@@ -52,6 +55,15 @@ public class Vuelo : IValidable
 
     public override string ToString()
     {
-        return $"Número de Vuelo: {_nroVuelo}";
+        List<string> dias = new List<string>();
+
+        foreach (DayOfWeek dia in Enum.GetValues(typeof(DayOfWeek)))
+        {
+            if (_frecuencia.Contains(dia))
+            {
+                dias.Add(dia.ToString());
+            }
+        }
+        return $"Vuelo -> Número de Vuelo: {_nroVuelo} - Modelo Avión: {_avion.Modelo} - Ruta: {_ruta.AeropuertoSalida.Codigo} - {_ruta.AeropuertoLlegada.Codigo} - Frecuencia: {string.Join(", ", dias)}";
     }
 }
