@@ -39,6 +39,12 @@ public class Ruta : IValidable
         if (_distancia < 0) throw new Exception("La distancia no puede ser negativa");
     }
 
+    public override bool Equals(object obj)
+    {
+        Ruta r = obj as Ruta;
+        return r != null && this._aeropuertoLlegada.Equals(r._aeropuertoLlegada) && this._aeropuertoSalida.Equals(r._aeropuertoSalida);
+    }
+    
     public override string ToString()
     {
         return $"{_aeropuertoLlegada} - {_aeropuertoSalida}";

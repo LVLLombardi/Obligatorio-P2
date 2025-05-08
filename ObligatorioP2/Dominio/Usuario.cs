@@ -27,11 +27,11 @@ public abstract class Usuario : IValidable
         if (string.IsNullOrEmpty(_contrasenia)) throw new Exception("La contraseña no puede ser vacia");
     }
 
-    // VERIFICACION FUTURA
+    // EQUALS PARA QUE VERIFICAR QUE UN USUARIO EXISTENTE NO CONTENTA A UN USUARIO NUEVO POR CORREO
     public override bool Equals(object? obj)
     {
         Usuario u = obj as Usuario;
-        return u != null && u.Correo == _correo;
+        return u != null && u.Correo == this._correo;
     }
 
     public override string ToString()
