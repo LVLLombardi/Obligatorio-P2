@@ -42,12 +42,6 @@ public class Avion : IValidable
         if (_alcanceKm < 0) throw new Exception("La cantidad máxima de Kilometros que puede volar no puede ser negativa");
         if (_costoOperacion < 0) throw new Exception("El costo de operación por km no puede ser menor a cero");
     }
-
-    public override bool Equals(object obj)
-    {
-        Avion a = obj as Avion;
-        return a != null && this._id == a._id;
-    }
     
     public override string ToString()
     {

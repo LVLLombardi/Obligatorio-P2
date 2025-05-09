@@ -39,7 +39,7 @@ public class Sistema
 
         while (u == null && i < _usuarios.Count)
         {
-            if (_usuarios[i] is Cliente c && c.Correo == correo) u = c; // no hay que usar un equals?
+            if (_usuarios[i] is Cliente c && c.Correo == correo) u = c;
             i++;
         }
 
@@ -97,7 +97,6 @@ public class Sistema
         AgregarAeropuerto(new Aeropuerto("JNB", "Johannesburgo", 140, 125));
         AgregarAeropuerto(new Aeropuerto("LAX", "Los Ángeles", 190, 170));
         AgregarAeropuerto(new Aeropuerto("MAD", "Madrid", 150, 135));
-
     }
 
     // FUNCION PARA USAR EN RUTAS SE BUSCA AEROPUERTO POR CODIGO IATA
@@ -173,7 +172,6 @@ public class Sistema
     public void AgregarAvion(Avion a) 
     {
         if (a == null) throw new Exception("El avion no puede ser nulo");
-        if (_aviones.Contains(a)) throw new Exception("Ya existe un avion con el id dado");
         a.Validar();
         _aviones.Add(a);
     }
@@ -199,7 +197,6 @@ public class Sistema
         AgregarAvion(new Avion("Embraer", "E195", 132, 4200, 28000));
         AgregarAvion(new Avion("Boeing", "787", 242, 13600, 55000));
         AgregarAvion(new Avion("Airbus", "A350", 300, 15000, 60000));
-
     }
 
     // CREACION DE VUELO
@@ -256,7 +253,6 @@ public class Sistema
         AgregarVuelo(new Vuelo("OO8903", BuscarRuta(28), BuscarAvion("Embraer", "E195"), new List<DayOfWeek> { DayOfWeek.Thursday }));
         AgregarVuelo(new Vuelo("PP9014", BuscarRuta(29), BuscarAvion("Boeing", "787"), new List<DayOfWeek> { DayOfWeek.Sunday }));
         AgregarVuelo(new Vuelo("QQ0125", BuscarRuta(30), BuscarAvion("Airbus", "A350"), new List<DayOfWeek> { DayOfWeek.Wednesday, DayOfWeek.Friday }));
-
     }
 
     // CREACION DE PASAJE 
@@ -300,7 +296,6 @@ public class Sistema
         AgregarPasaje(new Pasaje(BuscarVuelo("NN7892"), new DateTime(2025, 6, 27), BuscarCliente("fernandoalonso14@gmail.com"), Equipaje.BODEGA, 2600));
         AgregarPasaje(new Pasaje(BuscarVuelo("OO8903"), new DateTime(2025, 6, 28), BuscarCliente("oliverbearman87@gmail.com"), Equipaje.LIGHT, 2300));
         AgregarPasaje(new Pasaje(BuscarVuelo("PP9014"), new DateTime(2025, 6, 29), BuscarCliente("charlesleclerc@gmail.com"), Equipaje.CABINA, 2200));
-
     }
 
     public List<Cliente> ListarClientes()

@@ -160,8 +160,10 @@ class Program
         {
             DateTime fechaInicio = PedirFecha("Ingrese la fecha de inicio");
             DateTime fechaFin = PedirFecha("Ingresar la fecha de fin");
+            if (fechaInicio == new DateTime()) throw new Exception("Fecha invalida");
+            if (fechaFin == new DateTime()) throw new Exception("Fecha invalida");
             List<Pasaje> pasajes = miSistema.ListarPasajesSegunFechas(fechaInicio, fechaFin);
-            if (pasajes.Count == 0) throw new Exception("No hay pasajes registrados en el Sistema");
+            if (pasajes.Count == 0) throw new Exception("No hay pasajes registrados en el Sistema.");
             foreach (Pasaje p in pasajes)
             {
                 Console.WriteLine(p.ToString());
@@ -189,14 +191,19 @@ class Program
             string nombre = PedirPalabras("Ingrese nombre: ");
             string nacionalidad = PedirPalabras("Ingrese nacionalidad: ");
             bool esElegible = GenerarElegible();
-
+            
+            if(string.IsNullOrEmpty(correo)) throw new Exception("El correo no puede estar vacio");
+            if(string.IsNullOrEmpty(contrasenia)) throw new Exception("La contraseña no puede estar vacia");
+            if(string.IsNullOrEmpty(documento)) throw new Exception("El documento no puede estar vacio");
+            if(string.IsNullOrEmpty(nombre)) throw new Exception("El nombre no puede estar vacio");
+            if(string.IsNullOrEmpty(nacionalidad)) throw new Exception("La nacionalidad no puede estar vacia");
             ClienteOcasional nuevo = new ClienteOcasional(correo, contrasenia, documento, nombre, nacionalidad, esElegible);
             miSistema.AgregarUsuario(nuevo);
             MostrarExito("Cliente ocasional agregado con éxito.");
         }
         catch(Exception e)
         {
-            MostrarError("Error al crear cliente ocasional"+e.Message);
+            MostrarError(e.Message);
 
         }
     }
@@ -204,7 +211,6 @@ class Program
     {
         Random random = new Random();
         return random.Next(0, 2)==1;
-        
     }
 }        
 

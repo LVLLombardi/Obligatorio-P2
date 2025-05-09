@@ -37,6 +37,6 @@ public class Pasaje : IValidable
 
     public override string ToString()
     {
-        return $"Pasaje-> Id: {_id} - Nombre Pasajero: {_pasajero.Nombre} - Precio: {_precio} - Fecha: {_fecha.ToShortDateString()} - {_vuelo}";
+        return $"Pasaje-> Id: {_id} - Nombre Pasajero: {_pasajero.Nombre} - Fecha: {_fecha.ToShortDateString()} - Número de vuelo: {_vuelo.NumeroVuelo}";
     }
 }

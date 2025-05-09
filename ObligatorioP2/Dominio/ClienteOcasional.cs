@@ -13,6 +13,4 @@ public class ClienteOcasional:Cliente
     {
         return $"{base.ToString()} - Es Elegible: {_esElegible}";
     }
-
-
 }
