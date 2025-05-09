@@ -37,6 +37,7 @@ public class Vuelo : IValidable
     {
         return _ruta.AeropuertoSalida.Equals(a)||_ruta.AeropuertoLlegada.Equals(a);
     }
+    
     public bool ValidarNroVuelo(string nroVuelo)
     {
         bool esValido = true;

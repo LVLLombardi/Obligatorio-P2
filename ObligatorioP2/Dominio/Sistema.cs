@@ -327,6 +327,14 @@ public class Sistema
     public List<Pasaje> ListarPasajesSegunFechas(DateTime desde, DateTime hasta)
     {
         List<Pasaje> buscados = new List<Pasaje>();
+        
+        if (desde > hasta)
+        {
+            DateTime auxFecha = desde;
+            desde = hasta;
+            hasta = auxFecha;
+        }
+        
         foreach (Pasaje p in _pasajes)
         {
             if (p.Fecha.Date >= desde.Date && p.Fecha.Date <= hasta.Date)

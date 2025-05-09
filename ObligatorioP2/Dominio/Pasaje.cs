@@ -32,7 +32,7 @@ public class Pasaje : IValidable
         if (_vuelo == null) throw new Exception("El vuelo no puede ser nulo");
         if(_pasajero == null) throw new Exception("El pasajero no puede ser nulo");
         if (_precio < 0) throw new Exception("El precio debe ser positivo");
-        if(_fecha == new DateTime()) throw new Exception("El fecha no puede ser nulo");
+        if(_fecha == new DateTime()) throw new Exception("El fecha no puede ser nula");
     }
 
     public override string ToString()
