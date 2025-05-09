@@ -135,6 +135,7 @@ class Program
         try
         {
             string codigoIATA = PedirPalabras("Ingrese codigo IATA: ");
+            if(string.IsNullOrEmpty(codigoIATA)) throw new Exception("El codigo IATA no puede ser nulo");
             List<Vuelo> vuelos = miSistema.ListarVuelos(codigoIATA);
             if (vuelos.Count == 0) throw new Exception("No hay vuelos registrados en el sistema");
             foreach (Vuelo v in vuelos)
