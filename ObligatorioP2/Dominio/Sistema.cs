@@ -175,6 +175,7 @@ public class Sistema
         a.Validar();
         _aviones.Add(a);
     }
+    
     //BUSCAR AVIÓN POR MODELO Y FABRICANTE:
     public Avion BuscarAvion(string fabricante, string modelo)
     {
@@ -207,6 +208,7 @@ public class Sistema
         if(_vuelos.Contains(v)) throw new Exception("Ya existe un vuelo con el número de vuelo dado");
         _vuelos.Add(v);
     }
+    
     //BUSCAR VUELO POR NUMERO DE VUELO
     public Vuelo BuscarVuelo(string numeroVuelo)
     {
@@ -220,6 +222,7 @@ public class Sistema
 
         return v;
     }
+    
     // PRECARGA DE VUELOS
     private void PrecargarVuelos()
     {
@@ -264,7 +267,6 @@ public class Sistema
     }
     
     // PRECARGA DE PASAJES
-
     private void PrecargarPasajes()
     {
         AgregarPasaje(new Pasaje(BuscarVuelo("AB1234"), new DateTime(2025, 6, 1), BuscarCliente("lewishamilton44@gmail.com"), Equipaje.LIGHT, 1200));
@@ -298,6 +300,7 @@ public class Sistema
         AgregarPasaje(new Pasaje(BuscarVuelo("PP9014"), new DateTime(2025, 6, 29), BuscarCliente("charlesleclerc@gmail.com"), Equipaje.CABINA, 2200));
     }
 
+    //LISTADO DE CLIENTES
     public List<Cliente> ListarClientes()
     {
         List<Cliente> clientes = new List<Cliente>();
@@ -310,7 +313,8 @@ public class Sistema
         }
         return clientes;
     }
-
+    
+    // LISTADO DE VUELO POR CODIGO IATA
     public List<Vuelo> ListarVuelos(string codigoIATA)
     {
         List<Vuelo> vuelos = new List<Vuelo>();
@@ -324,6 +328,7 @@ public class Sistema
         return vuelos;
     }
 
+    // LISTADO DE PASAJE SEGUN DOS FECHAS DADAS
     public List<Pasaje> ListarPasajesSegunFechas(DateTime desde, DateTime hasta)
     {
         List<Pasaje> buscados = new List<Pasaje>();

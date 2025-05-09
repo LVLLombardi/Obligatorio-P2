@@ -31,6 +31,7 @@ public class Vuelo : IValidable
         if (!ValidarNroVuelo(_nroVuelo)) throw new Exception("El número de vuelo no puede ser vacío y debe contener 2 letras y entre 1 y 4 números"); 
         if (_ruta == null) throw new Exception("La ruta no puede ser nula");
         if (_avion == null) throw new Exception("El avion no puede ser nulo");
+        if (_frecuencia == null || _frecuencia.Count == 0) throw new Exception("La frecuencia del vuelo no puede ser vacía. El vuelo debe operar al menos un día de la semana.");
     }
 
     public bool ContieneAeropuerto(Aeropuerto a)
@@ -38,7 +39,7 @@ public class Vuelo : IValidable
         return _ruta.AeropuertoSalida.Equals(a)||_ruta.AeropuertoLlegada.Equals(a);
     }
     
-    public bool ValidarNroVuelo(string nroVuelo)
+    private bool ValidarNroVuelo(string nroVuelo)
     {
         bool esValido = true;
         if (string.IsNullOrEmpty(nroVuelo) || nroVuelo.Length < 3 || nroVuelo.Length > 6) throw new Exception("El número de vuelo debe tener entre 3 y 6 de largo");
