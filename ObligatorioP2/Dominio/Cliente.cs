@@ -36,10 +36,4 @@ public abstract class Cliente : Usuario
     {
         return $"Nombre Cliente: {_nombre} - {base.ToString()} - Nacionalidad: {_nacionalidad}";
     }
-    
-    
-    public void Login()
-    {
-        //LOGICA SEGUNDO ENTREGA
-    }
 }

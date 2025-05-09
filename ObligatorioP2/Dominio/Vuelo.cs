@@ -39,7 +39,7 @@ public class Vuelo : IValidable
         return _ruta.AeropuertoSalida.Equals(a)||_ruta.AeropuertoLlegada.Equals(a);
     }
     
-    public bool ValidarNroVuelo(string nroVuelo)
+    private bool ValidarNroVuelo(string nroVuelo)
     {
         bool esValido = true;
         if (string.IsNullOrEmpty(nroVuelo) || nroVuelo.Length < 3 || nroVuelo.Length > 6) throw new Exception("El número de vuelo debe tener entre 3 y 6 de largo");

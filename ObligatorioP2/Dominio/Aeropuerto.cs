@@ -31,7 +31,7 @@ public class Aeropuerto : IValidable
     }
 
     // FUNCION PARA VALIDAR EL CODIGO IATA , VACIO, LENGTH DISTINTO DE 3 Y QUE TENGA LETRAS
-    public static bool ValidarCodigoIata(string codigo)
+    private static bool ValidarCodigoIata(string codigo)
     {
         bool esValido = true;
         if (string.IsNullOrEmpty(codigo) || codigo.Length != 3) throw new Exception("El código IATA debe tener exactamente 3 caracteres.");
