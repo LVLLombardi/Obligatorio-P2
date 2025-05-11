@@ -66,13 +66,11 @@ public class Vuelo : IValidable
     {
         List<string> dias = new List<string>();
 
-        foreach (DayOfWeek dia in Enum.GetValues(typeof(DayOfWeek)))
+        foreach (DayOfWeek dia in _frecuencia)
         {
-            if (_frecuencia.Contains(dia))
-            {
-                dias.Add(dia.ToString());
-            }
+            dias.Add(dia.ToString());
         }
+        
         return $"Vuelo -> Número de Vuelo: {_nroVuelo} - Modelo Avión: {_avion.Modelo} - Ruta: {_ruta.AeropuertoSalida.Codigo} - {_ruta.AeropuertoLlegada.Codigo} - Frecuencia: {string.Join(", ", dias)}";
     }
 }
