@@ -26,6 +26,11 @@ public class Vuelo : IValidable
     {
         get { return _ruta; }
     }
+
+    public List <DayOfWeek> Frecuencia
+    {
+        get { return _frecuencia; }
+    }
     public void Validar()
     {
         if (!ValidarNroVuelo(_nroVuelo)) throw new Exception("El número de vuelo no puede ser vacío y debe contener 2 letras y entre 1 y 4 números"); 

@@ -269,35 +269,37 @@ public class Sistema
     // PRECARGA DE PASAJES
     private void PrecargarPasajes()
     {
-        AgregarPasaje(new Pasaje(BuscarVuelo("AB1234"), new DateTime(2025, 6, 1), BuscarCliente("lewishamilton44@gmail.com"), Equipaje.LIGHT, 1200));
-        AgregarPasaje(new Pasaje(BuscarVuelo("CD2345"), new DateTime(2025, 6, 2), BuscarCliente("carlossainz55@gmail.com"), Equipaje.CABINA, 1500));
-        AgregarPasaje(new Pasaje(BuscarVuelo("EF3456"), new DateTime(2025, 6, 3), BuscarCliente("maria.lopez92@gmail.com"), Equipaje.BODEGA, 2000));
-        AgregarPasaje(new Pasaje(BuscarVuelo("GH4567"), new DateTime(2025, 6, 4), BuscarCliente("john.doe84@yahoo.com"), Equipaje.LIGHT, 1800));
-        AgregarPasaje(new Pasaje(BuscarVuelo("IJ5678"), new DateTime(2025, 6, 5), BuscarCliente("luigi.rossi@outlook.it"), Equipaje.CABINA, 2200));
-        AgregarPasaje(new Pasaje(BuscarVuelo("KL6789"), new DateTime(2025, 6, 6), BuscarCliente("emily.jones@protonmail.com"), Equipaje.BODEGA, 2100));
-        AgregarPasaje(new Pasaje(BuscarVuelo("MN7890"), new DateTime(2025, 6, 7), BuscarCliente("fernandoalonso14@gmail.com"), Equipaje.LIGHT, 2500));
-        AgregarPasaje(new Pasaje(BuscarVuelo("OP8901"), new DateTime(2025, 6, 8), BuscarCliente("oliverbearman87@gmail.com"), Equipaje.CABINA, 2300));
+        AgregarPasaje(new Pasaje(BuscarVuelo("AB1234"), new DateTime(2025, 6, 2), BuscarCliente("lewishamilton44@gmail.com"), Equipaje.LIGHT, 1200)); 
+        AgregarPasaje(new Pasaje(BuscarVuelo("CD2345"), new DateTime(2025, 6, 3), BuscarCliente("carlossainz55@gmail.com"), Equipaje.CABINA, 1500));
+        AgregarPasaje(new Pasaje(BuscarVuelo("EF3456"), new DateTime(2025, 6, 4), BuscarCliente("maria.lopez92@gmail.com"), Equipaje.BODEGA, 2000));
+        AgregarPasaje(new Pasaje(BuscarVuelo("GH4567"), new DateTime(2025, 6, 5), BuscarCliente("john.doe84@yahoo.com"), Equipaje.LIGHT, 1800)); 
+        AgregarPasaje(new Pasaje(BuscarVuelo("IJ5678"), new DateTime(2025, 6, 2), BuscarCliente("luigi.rossi@outlook.it"), Equipaje.CABINA, 2200)); 
+        AgregarPasaje(new Pasaje(BuscarVuelo("KL6789"), new DateTime(2025, 6, 6), BuscarCliente("emily.jones@protonmail.com"), Equipaje.BODEGA, 2100)); 
+        AgregarPasaje(new Pasaje(BuscarVuelo("MN7890"), new DateTime(2025, 6, 3), BuscarCliente("fernandoalonso14@gmail.com"), Equipaje.LIGHT, 2500));
+        AgregarPasaje(new Pasaje(BuscarVuelo("OP8901"), new DateTime(2025, 6, 7), BuscarCliente("oliverbearman87@gmail.com"), Equipaje.CABINA, 2300)); 
         AgregarPasaje(new Pasaje(BuscarVuelo("QR9012"), new DateTime(2025, 6, 9), BuscarCliente("charlesleclerc@gmail.com"), Equipaje.BODEGA, 1900));
-        AgregarPasaje(new Pasaje(BuscarVuelo("ST0123"), new DateTime(2025, 6, 10), BuscarCliente("kimiantonelli12@gmail.com"), Equipaje.LIGHT, 1700));
-        AgregarPasaje(new Pasaje(BuscarVuelo("UV1235"), new DateTime(2025, 6, 11), BuscarCliente("lewishamilton44@gmail.com"), Equipaje.CABINA, 2600));
-        AgregarPasaje(new Pasaje(BuscarVuelo("WX2346"), new DateTime(2025, 6, 12), BuscarCliente("carlossainz55@gmail.com"), Equipaje.BODEGA, 2400));
-        AgregarPasaje(new Pasaje(BuscarVuelo("YZ3457"), new DateTime(2025, 6, 13), BuscarCliente("maria.lopez92@gmail.com"), Equipaje.LIGHT, 2200));
-        AgregarPasaje(new Pasaje(BuscarVuelo("AA4568"), new DateTime(2025, 6, 14), BuscarCliente("john.doe84@yahoo.com"), Equipaje.CABINA, 2000));
-        AgregarPasaje(new Pasaje(BuscarVuelo("BB5679"), new DateTime(2025, 6, 15), BuscarCliente("luigi.rossi@outlook.it"), Equipaje.BODEGA, 2100));
-        AgregarPasaje(new Pasaje(BuscarVuelo("CC6780"), new DateTime(2025, 6, 16), BuscarCliente("emily.jones@protonmail.com"), Equipaje.LIGHT, 1800));
-        AgregarPasaje(new Pasaje(BuscarVuelo("DD7891"), new DateTime(2025, 6, 17), BuscarCliente("fernandoalonso14@gmail.com"), Equipaje.CABINA, 2300));
-        AgregarPasaje(new Pasaje(BuscarVuelo("EE8902"), new DateTime(2025, 6, 18), BuscarCliente("oliverbearman87@gmail.com"), Equipaje.BODEGA, 2500));
-        AgregarPasaje(new Pasaje(BuscarVuelo("FF9013"), new DateTime(2025, 6, 19), BuscarCliente("charlesleclerc@gmail.com"), Equipaje.LIGHT, 2100));
-        AgregarPasaje(new Pasaje(BuscarVuelo("GG0124"), new DateTime(2025, 6, 20), BuscarCliente("kimiantonelli12@gmail.com"), Equipaje.CABINA, 2400));
-        AgregarPasaje(new Pasaje(BuscarVuelo("HH1236"), new DateTime(2025, 6, 21), BuscarCliente("lewishamilton44@gmail.com"), Equipaje.BODEGA, 2800));
-        AgregarPasaje(new Pasaje(BuscarVuelo("II2347"), new DateTime(2025, 6, 22), BuscarCliente("carlossainz55@gmail.com"), Equipaje.LIGHT, 2200));
-        AgregarPasaje(new Pasaje(BuscarVuelo("JJ3458"), new DateTime(2025, 6, 23), BuscarCliente("maria.lopez92@gmail.com"), Equipaje.CABINA, 2000));
-        AgregarPasaje(new Pasaje(BuscarVuelo("KK4569"), new DateTime(2025, 6, 24), BuscarCliente("john.doe84@yahoo.com"), Equipaje.BODEGA, 2300));
-        AgregarPasaje(new Pasaje(BuscarVuelo("LL5670"), new DateTime(2025, 6, 25), BuscarCliente("luigi.rossi@outlook.it"), Equipaje.LIGHT, 1900));
-        AgregarPasaje(new Pasaje(BuscarVuelo("MM6781"), new DateTime(2025, 6, 26), BuscarCliente("emily.jones@protonmail.com"), Equipaje.CABINA, 2400));
-        AgregarPasaje(new Pasaje(BuscarVuelo("NN7892"), new DateTime(2025, 6, 27), BuscarCliente("fernandoalonso14@gmail.com"), Equipaje.BODEGA, 2600));
-        AgregarPasaje(new Pasaje(BuscarVuelo("OO8903"), new DateTime(2025, 6, 28), BuscarCliente("oliverbearman87@gmail.com"), Equipaje.LIGHT, 2300));
-        AgregarPasaje(new Pasaje(BuscarVuelo("PP9014"), new DateTime(2025, 6, 29), BuscarCliente("charlesleclerc@gmail.com"), Equipaje.CABINA, 2200));
+        AgregarPasaje(new Pasaje(BuscarVuelo("ST0123"), new DateTime(2025, 6, 11), BuscarCliente("kimiantonelli12@gmail.com"), Equipaje.LIGHT, 1700));
+        AgregarPasaje(new Pasaje(BuscarVuelo("UV1235"), new DateTime(2025, 6, 15), BuscarCliente("lewishamilton44@gmail.com"), Equipaje.CABINA, 2600)); 
+        AgregarPasaje(new Pasaje(BuscarVuelo("WX2346"), new DateTime(2025, 6, 13), BuscarCliente("carlossainz55@gmail.com"), Equipaje.BODEGA, 2400));
+        AgregarPasaje(new Pasaje(BuscarVuelo("YZ3457"), new DateTime(2025, 6, 16), BuscarCliente("maria.lopez92@gmail.com"), Equipaje.LIGHT, 2200));
+        AgregarPasaje(new Pasaje(BuscarVuelo("AA4568"), new DateTime(2025, 6, 17), BuscarCliente("john.doe84@yahoo.com"), Equipaje.CABINA, 2000)); 
+        AgregarPasaje(new Pasaje(BuscarVuelo("BB5679"), new DateTime(2025, 6, 19), BuscarCliente("luigi.rossi@outlook.it"), Equipaje.BODEGA, 2100)); 
+        AgregarPasaje(new Pasaje(BuscarVuelo("CC6780"), new DateTime(2025, 6, 21), BuscarCliente("emily.jones@protonmail.com"), Equipaje.LIGHT, 1800)); 
+        AgregarPasaje(new Pasaje(BuscarVuelo("DD7891"), new DateTime(2025, 6, 18), BuscarCliente("fernandoalonso14@gmail.com"), Equipaje.CABINA, 2300)); 
+        AgregarPasaje(new Pasaje(BuscarVuelo("EE8902"), new DateTime(2025, 6, 23), BuscarCliente("oliverbearman87@gmail.com"), Equipaje.BODEGA, 2500)); 
+        AgregarPasaje(new Pasaje(BuscarVuelo("FF9013"), new DateTime(2025, 6, 20), BuscarCliente("charlesleclerc@gmail.com"), Equipaje.LIGHT, 2100)); 
+        AgregarPasaje(new Pasaje(BuscarVuelo("GG0124"), new DateTime(2025, 6, 25), BuscarCliente("kimiantonelli12@gmail.com"), Equipaje.CABINA, 2400)); 
+        AgregarPasaje(new Pasaje(BuscarVuelo("HH1236"), new DateTime(2025, 6, 24), BuscarCliente("lewishamilton44@gmail.com"), Equipaje.BODEGA, 2800));
+        AgregarPasaje(new Pasaje(BuscarVuelo("II2347"), new DateTime(2025, 6, 26), BuscarCliente("carlossainz55@gmail.com"), Equipaje.LIGHT, 2200)); 
+        AgregarPasaje(new Pasaje(BuscarVuelo("JJ3458"), new DateTime(2025, 6, 29), BuscarCliente("maria.lopez92@gmail.com"), Equipaje.CABINA, 2000));
+        AgregarPasaje(new Pasaje(BuscarVuelo("KK4569"), new DateTime(2025, 6, 24), BuscarCliente("john.doe84@yahoo.com"), Equipaje.BODEGA, 2300)); 
+        AgregarPasaje(new Pasaje(BuscarVuelo("LL5670"), new DateTime(2025, 6, 27), BuscarCliente("luigi.rossi@outlook.it"), Equipaje.LIGHT, 1900)); 
+        AgregarPasaje(new Pasaje(BuscarVuelo("MM6781"), new DateTime(2025, 6, 28), BuscarCliente("emily.jones@protonmail.com"), Equipaje.CABINA, 2400)); 
+        AgregarPasaje(new Pasaje(BuscarVuelo("NN7892"), new DateTime(2025, 6, 30), BuscarCliente("fernandoalonso14@gmail.com"), Equipaje.BODEGA, 2600));
+        AgregarPasaje(new Pasaje(BuscarVuelo("OO8903"), new DateTime(2025, 6, 26), BuscarCliente("oliverbearman87@gmail.com"), Equipaje.LIGHT, 2300)); 
+        AgregarPasaje(new Pasaje(BuscarVuelo("PP9014"), new DateTime(2025, 6, 29), BuscarCliente("charlesleclerc@gmail.com"), Equipaje.LIGHT, 2500));
+        AgregarPasaje(new Pasaje(BuscarVuelo("QQ0125"), new DateTime(2025, 6, 27), BuscarCliente("kimiantonelli12@gmail.com"), Equipaje.CABINA, 2600)); 
+
     }
 
     //LISTADO DE CLIENTES
