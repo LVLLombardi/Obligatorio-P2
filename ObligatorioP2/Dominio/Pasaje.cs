@@ -33,8 +33,13 @@ public class Pasaje : IValidable
         if(_pasajero == null) throw new Exception("El pasajero no puede ser nulo");
         if (_precio < 0) throw new Exception("El precio debe ser positivo");
         if(_fecha == new DateTime()) throw new Exception("El fecha no puede ser nula");
+        if (!ValidarFecha()) throw new Exception("La fecha no corresponde a la frecuencia del vuelo");
     }
 
+    private bool ValidarFecha()
+    {
+        return _vuelo.Frecuencia != null && _vuelo.Frecuencia.Contains(_fecha.DayOfWeek);
+    }
     public override string ToString()
     {
         return $"Pasaje-> Id: {_id} - Nombre Pasajero: {_pasajero.Nombre} - Fecha: {_fecha.ToShortDateString()} - Número de vuelo: {_vuelo.NumeroVuelo}";
