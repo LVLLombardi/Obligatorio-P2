@@ -5,12 +5,52 @@ namespace Dominio;
 
 public class Sistema
 {
+    private static Sistema s_instancia;
     private List<Usuario> _usuarios = new List<Usuario>();
     private List<Aeropuerto> _aeropuertos = new List<Aeropuerto>();
     private List<Ruta> _rutas = new List<Ruta>();
     private List<Avion> _aviones = new List<Avion>();
     private List<Vuelo> _vuelos = new List<Vuelo>();
     private List<Pasaje> _pasajes = new List<Pasaje>();
+
+    public static Sistema Instancia
+    {
+        get
+        {
+            if (s_instancia == null) s_instancia = new Sistema();
+            return s_instancia;
+        }
+    }
+
+    public List<Usuario> Usuarios
+    {
+        get { return _usuarios; }
+    }
+
+    public List<Aeropuerto> Aeropuerto
+    {
+        get { return _aeropuertos; }
+    }
+
+    public List<Ruta> Rutas
+    {
+        get { return _rutas; }
+    }
+
+    public List<Avion> Aviones
+    {
+        get { return _aviones; }
+    }
+
+    public List<Vuelo> Vuelos
+    {
+        get { return _vuelos; } 
+    }
+
+    public List<Pasaje> Pasajes
+    {
+        get{ return _pasajes; }
+    }
 
     public Sistema()
     {

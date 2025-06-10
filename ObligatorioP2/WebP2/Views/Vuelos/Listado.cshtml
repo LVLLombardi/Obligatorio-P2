@@ -1,0 +1,99 @@
+﻿@using Dominio
+@{
+    ViewData["Title"] = "Vuelos";
+}
+
+<h3>Comprá tus pasajes de manera fácil y segura</h3>
+
+<form method="get" asp-action="Listado">
+    <div class="row mb-3 align-items-end"> @*Alineo columnas horizontalmente, aplico margen inferior y alineo los elementos hijos *@
+        @* Aeropuerto de salida *@
+        <div class="col-md-3">
+            <label for="aeropuerto_salida" class="form-label">Aeropuerto de salida:</label>
+            <select id="aeropuerto_salida" name="aeropuerto_salida" class="form-select">
+                <option value="">-- Cualquiera --</option>
+                @if (ViewBag.Aeropuertos != null)
+                {
+                    @foreach (Aeropuerto a in ViewBag.Aeropuertos)
+                    {
+                        if (ViewBag.AeropuertoSalida != null && a.Codigo == ViewBag.AeropuertoSalida)
+                        {
+                            <option value="@a.Codigo" selected>@a.Codigo</option>
+                        }
+                        else
+                        {
+                            <option value="@a.Codigo">@a.Codigo</option>
+                        }
+                    }
+                }
+            </select>
+        </div>
+
+        @* Aeropuerto de llegada *@
+        <div class="col-md-3">
+            <label for="aeropuerto_llegada" class="form-label">Aeropuerto de llegada:</label>
+            <select id="aeropuerto_llegada" name="aeropuerto_llegada" class="form-select">
+                <option value="">-- Cualquiera --</option>
+                @if (ViewBag.Aeropuertos != null)
+                {
+                    @foreach (Aeropuerto a in ViewBag.Aeropuertos)
+                    {
+                        if (ViewBag.AeropuertoLlegada != null && a.Codigo == ViewBag.AeropuertoLlegada)
+                        {
+                            <option value="@a.Codigo" selected>@a.Codigo</option>
+                        }
+                        else
+                        {
+                            <option value="@a.Codigo">@a.Codigo</option>
+                        }
+                    }
+                }
+            </select>
+        </div>
+
+        @* Frecuencia *@
+        <div class="col-md-3">
+            <label for="frecuencia_vuelo" class="form-label">Fecha del vuelo:</label>
+            <input type="date" id="frecuencia_vuelo" name="frecuencia_vuelo" class="form-control" value="@(ViewBag.FrecuenciaVuelo != null ? ((DateTime)ViewBag.FrecuenciaVuelo).ToString("yyyy-MM-dd") : "")" />
+        </div>
+
+        @* Botones *@
+        <div class="col-md-3">
+            <input class="btn btn-primary" type="submit" value="Buscar vuelos" />
+            <a href="/Vuelos/Listado" class="btn btn-secondary">Mostrar Todos</a>
+        </div>
+    </div>
+</form>
+
+<br />
+
+@if (ViewBag.Listado == null || ViewBag.Listado.Count == 0)
+{
+    <div class="alert alert-warning">No se encontraron vuelos que coincidan con su búsqueda.</div>
+}
+else
+{
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Número de Vuelo</th>
+                <th>Avión</th>
+                <th>Origen - Destino</th>
+                <th>Frecuencia (Días de semana)</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (Vuelo v in ViewBag.Listado)
+            {
+                <tr>
+                    <td>@v.NumeroVuelo</td>
+                    <td>@v.Avion.FabricanteAvion @v.Avion.ModeloAvion</td>
+                    <td>@v.Ruta.AeropuertoSalida.Codigo - @v.Ruta.AeropuertoLlegada.Codigo</td>
+                    <td>@string.Join(", ", v.Frecuencia)</td>
+                    <td><a class="btn btn-success" href="/Pasajes/HacerCompra?numeroVuelo=@v.NumeroVuelo">Comprar pasaje</a></td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
