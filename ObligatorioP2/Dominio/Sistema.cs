@@ -22,6 +22,7 @@ public class Sistema
         }
     }
 
+
     public List<Usuario> Usuarios
     {
         get { return _usuarios; }
@@ -390,5 +391,36 @@ public class Sistema
             }
         }
         return buscados;
+    }
+
+    public Usuario Login(string email, string contrasenia)
+    {
+        Usuario buscado = null;
+        int i = 0;
+        while (buscado == null && i < _usuarios.Count)
+        {
+            if(_usuarios[i].Correo.ToLower() == email.ToLower() && _usuarios[i].Contrasenia == contrasenia) buscado = _usuarios[i];
+            i++;
+        }
+        return buscado;
+    }
+
+    public bool EmailYaRegistrado(string email)
+    {
+        return BuscarCliente(email) != null;
+    }
+    
+    public bool GenerarElegibilidadCliente()
+    {
+        var random = new Random();
+        return random.Next(0, 2) == 1;
+    }
+
+    public void RegistrarCliente(Cliente cliente)
+    {
+        if (cliente == null) throw new Exception("El cliente no puede ser nulo");
+        if (EmailYaRegistrado(cliente.Correo)) throw new Exception("Ya existe un usuario con ese email.");
+        if (!cliente.ContraseniaValida()) throw new Exception("La contraseña debe tener al menos 8 caracteres alfanuméricos");
+        _usuarios.Add(cliente);
     }
 }

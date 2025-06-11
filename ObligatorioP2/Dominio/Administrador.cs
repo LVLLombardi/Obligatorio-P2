@@ -16,4 +16,9 @@ public class Administrador : Usuario
         base.Validar();
         if (string.IsNullOrEmpty(_apodo)) throw new Exception("El apodo no puede ser vacío");
     }
+
+    public override string Rol()
+    {
+        return "Administrador";
+    }
 }

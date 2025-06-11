@@ -1,0 +1,34 @@
+
+<h1 class="text-center mb-2">Registro</h1>
+
+@if (ViewBag.Error != null)
+{
+    <div class="alert alert-danger">@ViewBag.Error</div>
+}
+
+<div class="container mt-5 d-flex justify-content-center">
+    <div class="card shadow" style="width: 400px;">
+        <div class="card-body">
+            <form method="post" asp-action="Registro">
+                <div class="mb-3">
+                    <input type="text" name="nombre" class="form-control" placeholder="Nombre" value="@ViewBag.Nombre" />
+                </div>
+                <div class="mb-3">
+                    <input type="text" name="nacionalidad" class="form-control" placeholder="Nacionalidad" value="@ViewBag.Nacionalidad" />
+                </div>
+                <div class="mb-3">
+                    <input type="email" name="email" class="form-control" placeholder="Email" value="@ViewBag.Email" />
+                </div>
+                <div class="mb-3">
+                    <input type="password" name="contrasenia" class="form-control" placeholder="Contraseña" value="@ViewBag.Contrasenia" />
+                </div>
+                <div class="mb-3">
+                    <input type="text" name="documento" class="form-control" placeholder="Documento" value="@ViewBag.Documento" />
+                </div>
+                <button type="submit" class="btn btn-primary w-100">Registrarse</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+

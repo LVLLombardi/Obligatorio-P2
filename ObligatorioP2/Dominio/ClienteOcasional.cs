@@ -13,4 +13,9 @@ public class ClienteOcasional:Cliente
     {
         return $"{base.ToString()} - Es Elegible: {_esElegible}";
     }
+
+    public override string Rol()
+    {
+        return "Cliente";
+    }
 }
