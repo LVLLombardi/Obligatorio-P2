@@ -19,4 +19,9 @@ public class ClientePremium:Cliente
     {
         return $"{base.ToString()} - Puntos: {_puntos}";
     }
+
+    public override string Rol()
+    {
+        return "Cliente";
+    }
 }

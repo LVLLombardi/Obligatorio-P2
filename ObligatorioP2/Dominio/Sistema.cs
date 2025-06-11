@@ -5,6 +5,7 @@ namespace Dominio;
 
 public class Sistema
 {
+    private static Sistema s_instancia;
     private List<Usuario> _usuarios = new List<Usuario>();
     private List<Aeropuerto> _aeropuertos = new List<Aeropuerto>();
     private List<Ruta> _rutas = new List<Ruta>();
@@ -12,6 +13,15 @@ public class Sistema
     private List<Vuelo> _vuelos = new List<Vuelo>();
     private List<Pasaje> _pasajes = new List<Pasaje>();
 
+    public static Sistema Instancia
+    {
+        get
+        {
+            if (s_instancia == null) s_instancia = new Sistema();
+            return s_instancia;
+        }
+    }
+    
     public Sistema()
     {
         PrecargarUsuarios();
@@ -350,5 +360,36 @@ public class Sistema
             }
         }
         return buscados;
+    }
+
+    public Usuario Login(string email, string contrasenia)
+    {
+        Usuario buscado = null;
+        int i = 0;
+        while (buscado == null && i < _usuarios.Count)
+        {
+            if(_usuarios[i].Correo.ToLower() == email.ToLower() && _usuarios[i].Contrasenia == contrasenia) buscado = _usuarios[i];
+            i++;
+        }
+        return buscado;
+    }
+
+    public bool EmailYaRegistrado(string email)
+    {
+        return BuscarCliente(email) != null;
+    }
+    
+    public bool GenerarElegibilidadCliente()
+    {
+        var random = new Random();
+        return random.Next(0, 2) == 1;
+    }
+
+    public void RegistrarCliente(Cliente cliente)
+    {
+        if (cliente == null) throw new Exception("El cliente no puede ser nulo");
+        if (EmailYaRegistrado(cliente.Correo)) throw new Exception("Ya existe un usuario con ese email.");
+        if (!cliente.ContraseniaValida()) throw new Exception("La contraseña debe tener al menos 8 caracteres alfanuméricos");
+        _usuarios.Add(cliente);
     }
 }

@@ -38,4 +38,29 @@ public abstract class Usuario : IValidable
     {
         return $"Correo: {_correo}";
     }
+
+    public bool ContraseniaValida()
+    {
+        bool esValida = true;
+        bool tieneLetra = false;
+        bool tieneDigito = false;
+        
+        if(Contrasenia.Length < 8) esValida = false;
+        else
+        {
+            foreach (char c in Contrasenia)
+            {
+                if (char.IsLetter(c)) tieneLetra = true;
+                if (char.IsDigit(c)) tieneDigito = true;
+            }
+
+            if (!tieneLetra && !tieneDigito)
+            {
+                esValida = false;
+            }
+        }
+        return esValida;
+    }
+    
+    public abstract string Rol();
 }

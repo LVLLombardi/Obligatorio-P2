@@ -8,7 +8,8 @@ public class Program
 
         // Add services to the container.
         builder.Services.AddControllersWithViews();
-
+        // Para usar Session
+        builder.Services.AddSession();
         var app = builder.Build();
 
         // Configure the HTTP request pipeline.
@@ -26,7 +27,8 @@ public class Program
         app.MapControllerRoute(
             name: "default",
             pattern: "{controller=Home}/{action=Index}/{id?}");
-
+        //Para usar Session
+        app.UseSession();
         app.Run();
     }
 }
