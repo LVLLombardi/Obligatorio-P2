@@ -21,7 +21,38 @@ public class Sistema
             return s_instancia;
         }
     }
-    
+
+
+    public List<Usuario> Usuarios
+    {
+        get { return _usuarios; }
+    }
+
+    public List<Aeropuerto> Aeropuerto
+    {
+        get { return _aeropuertos; }
+    }
+
+    public List<Ruta> Rutas
+    {
+        get { return _rutas; }
+    }
+
+    public List<Avion> Aviones
+    {
+        get { return _aviones; }
+    }
+
+    public List<Vuelo> Vuelos
+    {
+        get { return _vuelos; } 
+    }
+
+    public List<Pasaje> Pasajes
+    {
+        get{ return _pasajes; }
+    }
+
     public Sistema()
     {
         PrecargarUsuarios();
