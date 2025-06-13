@@ -2,7 +2,7 @@ using Dominio.Interfaces;
 
 namespace Dominio;
 
-public abstract class Cliente : Usuario
+public abstract class Cliente : Usuario, IComparable<Cliente>
 {
     private string _documento;
     private string _nombre;
@@ -24,6 +24,11 @@ public abstract class Cliente : Usuario
         get { return _nombre; }
     }
 
+    public string Nacionalidad
+    {
+        get { return _nacionalidad; }
+    }
+
     public override void Validar()
     {
         base.Validar();
@@ -35,5 +40,16 @@ public abstract class Cliente : Usuario
     public override string ToString()
     {
         return $"Nombre Cliente: {_nombre} - {base.ToString()} - Nacionalidad: {_nacionalidad}";
+    }
+
+    public abstract string Tipo();
+    public int CompareTo(Cliente? other)
+    {
+        return this._documento.CompareTo(other._documento);
+    }
+    
+    public override string Rol()
+    {
+        return "Cliente";
     }
 }

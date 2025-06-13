@@ -76,6 +76,41 @@ public class UsuariosController : Controller
     }
     
     [HttpGet]
+    public IActionResult ListadoClientes()
+    {
+        ViewBag.Listado = miSistema.ListarClientesPorDocumentoAsc();
+        return View();
+    }
+    
+    
+    public IActionResult ListadoClientes(string email, string elegibilidad, double nuevosPuntos)
+    {
+        try
+        {
+            if (elegibilidad != null)
+            {
+                bool nuevaElegibilidad = elegibilidad == "true";
+            
+                miSistema.ModificarElegibilidad(email, nuevaElegibilidad);
+                ViewBag.Listado = miSistema.ListarClientesPorDocumentoAsc();
+                ViewBag.Exito = $"La elegibilidad del usuario {email} ha sido modificada correctamente";
+            } 
+            else if (nuevosPuntos >= 0)
+            {
+                miSistema.ModificarPuntos(email, nuevosPuntos);
+                ViewBag.Listado = miSistema.ListarClientesPorDocumentoAsc();
+                ViewBag.Exito = $"El puntaje del usuario {email} ha sido modificado correctamente";
+            }
+        }
+        catch (Exception e)
+        {
+            ViewBag.Error = e.Message;
+        }
+        
+        return View();
+    }
+    
+    [HttpGet]
     public IActionResult Logout()
     {
         HttpContext.Session.Clear();
