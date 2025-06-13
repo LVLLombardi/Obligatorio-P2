@@ -423,4 +423,51 @@ public class Sistema
         if (!cliente.ContraseniaValida()) throw new Exception("La contraseña debe tener al menos 8 caracteres alfanuméricos");
         _usuarios.Add(cliente);
     }
+    
+    public List<Cliente> ListarClientesPorDocumentoAsc()
+    {
+        List<Cliente> clientes = new List<Cliente>();
+        foreach (Usuario u in _usuarios)
+        {
+            if (u is Cliente cli)
+            {
+                clientes.Add(cli);
+            }
+        }
+        clientes.Sort();
+        return clientes;
+    }
+    
+    public void ModificarElegibilidad(string email, bool nuevaElegibilidad)
+    {
+        Cliente cliente = BuscarCliente(email);
+        ClienteOcasional co = cliente as ClienteOcasional;
+        if(co == null) throw new Exception("No se encontró cliente ocasional dado");
+        co.CambiarElegibilidad(nuevaElegibilidad);
+    }
+
+    public void ModificarPuntos(string email, double nuevosPuntos)
+    {
+        Cliente cliente = BuscarCliente(email);
+        ClientePremium cp = cliente as ClientePremium;
+        if (cp == null) throw new Exception("No se encontró cliente premium con el email dado");
+        cp.cambiarPuntos(nuevosPuntos);
+    }
+    
+    public List<Pasaje> ListarPasajesPorFechaAsc()
+    {
+        List<Pasaje> buscados = new List<Pasaje>();
+        foreach (Pasaje p in _pasajes)
+        {
+            buscados.Add(p);
+        }
+        buscados.Sort();
+        
+        return buscados;
+    }
+
+    
+    public void ComprarPasaje(int idPasaje, DateTime fecha, string nroVuelo)
+    {
+    }
 }

@@ -4,11 +4,17 @@ public class ClientePremium:Cliente
 {
     private double _puntos;
 
+    public double Puntos
+    {
+        get { return _puntos; }
+    }
+    
     public ClientePremium(string correo, string contrasenia, string documento, string nombre, string nacionalidad, double puntos) : base(correo, contrasenia, documento, nombre, nacionalidad)
     {
         _puntos = puntos;
     }
 
+    
     public override void Validar()
     {
         base.Validar();
@@ -19,9 +25,19 @@ public class ClientePremium:Cliente
     {
         return $"{base.ToString()} - Puntos: {_puntos}";
     }
+    
+    public override string Tipo()
+    {
+        return "Cliente Premium";
+    }
 
     public override string Rol()
     {
         return "Cliente";
+    }
+
+    public void cambiarPuntos(double nuevosPuntos)
+    {
+       _puntos = nuevosPuntos; 
     }
 }
