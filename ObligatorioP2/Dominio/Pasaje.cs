@@ -27,6 +27,26 @@ public class Pasaje : IValidable
         get { return _fecha; }
     }
 
+    public Vuelo Vuelo
+    {
+        get { return _vuelo; }
+    }
+
+    public Cliente Pasajero
+    {
+        get { return _pasajero; }
+    }
+
+
+    public Equipaje Equipaje
+    {
+        get { return _equipaje; }
+    }
+
+    public double Precio
+    {
+        get { return _precio; }
+    }
     public void Validar()
     {
         if (_vuelo == null) throw new Exception("El vuelo no puede ser nulo");
