@@ -423,6 +423,82 @@ public class Sistema
         if (!cliente.ContraseniaValida()) throw new Exception("La contraseña debe tener al menos 8 caracteres alfanuméricos");
         _usuarios.Add(cliente);
     }
+  
+    public List<Vuelo> FiltrarVuelos(string aeropuertoSalida, string aeropuertoLlegada, DateTime? frecuenciaVuelo)
+    {
+        List<Vuelo> vuelosFiltrados = new List<Vuelo>();
+
+        foreach (Vuelo v in _vuelos)
+        {
+            bool cumpleCondiciones = true;
+            bool diaEncontrado = false;
+
+            // Filtro de aeropuerto de salida.
+            if (!string.IsNullOrEmpty(aeropuertoSalida))
+            {
+                if (!v.Ruta.AeropuertoSalida.Codigo.Equals(aeropuertoSalida, StringComparison.OrdinalIgnoreCase))
+                {
+                    cumpleCondiciones = false;
+                }
+            }
+
+            // Filtro de aeropuerto de llegada
+            if (cumpleCondiciones && !string.IsNullOrEmpty(aeropuertoLlegada))
+            {
+                if (!v.Ruta.AeropuertoLlegada.Codigo.Equals(aeropuertoLlegada, StringComparison.OrdinalIgnoreCase))
+                {
+                    cumpleCondiciones = false;
+                }
+            }
+
+            // Filtro de frecuencia
+            if (cumpleCondiciones && frecuenciaVuelo != null && diaEncontrado==false)
+            {
+                DayOfWeek diaSeleccionado = frecuenciaVuelo.Value.DayOfWeek;
+                foreach (DayOfWeek dia in v.Frecuencia)
+                {
+                    if (dia == diaSeleccionado)
+                    {
+                        diaEncontrado = true;
+                    }
+                }
+
+                if (!diaEncontrado)
+                {
+                    cumpleCondiciones = false;
+                }
+            }
+
+            // Vuelos que cumplen las condiciones para mostrarse en la vista
+            if (cumpleCondiciones)
+            {
+                vuelosFiltrados.Add(v);
+            }
+        }
+        return vuelosFiltrados;
+    }
+
+    public Pasaje ComprarPasaje(string numeroVuelo, DateTime fechaVuelo, string correoCliente, Equipaje tipoEquipaje, double precioPasaje)
+    {  
+        Vuelo vueloSeleccionado = BuscarVuelo(numeroVuelo);
+        Cliente cliente = BuscarCliente(correoCliente);
+        DateTime hoy = DateTime.Today;
+        if (fechaVuelo.Date < hoy)
+        {
+            throw new Exception("Error: No se pueden comprar pasajes para fechas pasadas.");
+        }
+
+        if (!vueloSeleccionado.Frecuencia.Contains(fechaVuelo.DayOfWeek))
+        {
+            throw new Exception($"Error: El vuelo {numeroVuelo} seleccionado no está disponible para la fecha seleccionada ({fechaVuelo.ToShortDateString()}).");
+        }
+
+        //Agrego nuevo pasaje
+        Pasaje nuevoPasaje = new Pasaje(vueloSeleccionado, fechaVuelo, cliente, tipoEquipaje, precioPasaje);
+        nuevoPasaje.Validar();
+        _pasajes.Add(nuevoPasaje);
+        return nuevoPasaje; 
+    }
     
     public List<Cliente> ListarClientesPorDocumentoAsc()
     {
@@ -464,10 +540,5 @@ public class Sistema
         buscados.Sort();
         
         return buscados;
-    }
-
-    
-    public void ComprarPasaje(int idPasaje, DateTime fecha, string nroVuelo)
-    {
     }
 }

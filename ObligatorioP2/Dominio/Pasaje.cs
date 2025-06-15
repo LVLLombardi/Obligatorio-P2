@@ -36,13 +36,17 @@ public class Pasaje : IValidable, IComparable<Pasaje>
     {
         get { return _pasajero; }
     }
+    
+    public double Precio
+    {
+        get { return _precio; }
+    }
 
     public Vuelo Vuelo
     {
         get { return _vuelo; }
     }
     
-
     public void Validar()
     {
         if (_vuelo == null) throw new Exception("El vuelo no puede ser nulo");
