@@ -2,7 +2,7 @@ using Dominio.Interfaces;
 
 namespace Dominio;
 
-public class Pasaje : IValidable
+public class Pasaje : IValidable, IComparable<Pasaje>
 {
     private int _id;
     private static int s_ultId = 1;  
@@ -27,26 +27,26 @@ public class Pasaje : IValidable
         get { return _fecha; }
     }
 
-    public Vuelo Vuelo
+    public Equipaje Equipaje
     {
-        get { return _vuelo; }
+        get { return _equipaje; }
     }
 
     public Cliente Pasajero
     {
         get { return _pasajero; }
     }
-
-
-    public Equipaje Equipaje
-    {
-        get { return _equipaje; }
-    }
-
+    
     public double Precio
     {
         get { return _precio; }
     }
+
+    public Vuelo Vuelo
+    {
+        get { return _vuelo; }
+    }
+    
     public void Validar()
     {
         if (_vuelo == null) throw new Exception("El vuelo no puede ser nulo");
@@ -60,6 +60,12 @@ public class Pasaje : IValidable
     {
         return _vuelo.Frecuencia != null && _vuelo.Frecuencia.Contains(_fecha.DayOfWeek);
     }
+
+    public int CompareTo(Pasaje? other)
+    {
+        return this._fecha.CompareTo(other._fecha);
+    }
+
     public override string ToString()
     {
         return $"Pasaje-> Id: {_id} - Nombre Pasajero: {_pasajero.Nombre} - Fecha: {_fecha.ToShortDateString()} - Número de vuelo: {_vuelo.NumeroVuelo}";

@@ -1,7 +1,6 @@
-﻿using System.Data;
+
 using Dominio;
 using Microsoft.AspNetCore.Mvc;
-
 namespace WebP2.Controllers
 
 {

@@ -1,0 +1,70 @@
+@using Dominio;
+
+<div class="container mt-4">
+    <h2 class="text-center mb-4">Listado de Clientes</h2>
+    @if (ViewBag.Error != null)
+    {
+        <div class="alert alert-danger">@ViewBag.Error</div>
+    }
+    @if (ViewBag.Exito != null)
+    {
+        <div class="alert alert-success text-center">@ViewBag.Exito</div>
+    }
+    <br/>
+    
+    @if (ViewBag.Listado == null || ViewBag.Listado.Count == 0)
+    {
+        <div class="alert alert-warning text-center">No se pudo modificar.</div>
+    }
+    else
+    {
+        <table class="table table-bordered table-striped table-hover">
+            <thead class="table-primary text-center">
+                <tr>
+                    <th>Documento</th>
+                    <th>Nombre</th>
+                    <th>Email</th>
+                    <th>Tipo</th>
+                    <th>Dato editable</th>
+                    <th>Modificar</th>
+                </tr>
+            </thead>
+            <tbody class="text-center">
+                @foreach (Cliente c in ViewBag.Listado)
+                {
+                    <tr>
+                        <td>@c.Documento</td>
+                        <td>@c.Nombre</td>
+                        <td>@c.Correo</td>
+                        <td>@c.Tipo()</td>
+                        <td>
+                            @if (c is ClientePremium cp)
+                            {
+                                <form method="post" action="/usuarios/ListadoClientes" class="d-flex justify-content-center gap-2">
+                                    <input type="text" name="email" value="@cp.Correo" hidden/>
+                                    <input type="number" name="nuevosPuntos" class="form-control form-control-sm w-50" value="@cp.Puntos" />
+                                    <td>
+                                        <input type="submit" value="Guardar" class="btn btn-success btn-sm" />
+                                    </td>
+                                </form>
+                            }
+                            else if (c is ClienteOcasional co)
+                            {
+                                <form method="post" action="/usuarios/ListadoClientes" class="d-flex justify-content-center gap-2">
+                                    <input type="text" name="email" value="@co.Correo" hidden />
+                                    <select name="elegibilidad" class="form-select form-select-sm w-75">
+                                        <option value="true" selected="@(co.Elegible ? "selected" : null)">Sí</option>
+                                        <option value="false" selected="@(!co.Elegible ? "selected" : null)">No</option>
+                                    </select>
+                                    <td>
+                                        <input type="submit" value="Guardar" class="btn btn-success btn-sm" />
+                                    </td>
+                                </form>
+                            }
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+</div>
