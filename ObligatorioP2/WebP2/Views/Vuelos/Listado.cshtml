@@ -51,10 +51,10 @@
             </select>
         </div>
 
-        @* Frecuencia *@
+        @* Fecha *@
         <div class="col-md-3">
-            <label for="frecuencia_vuelo" class="form-label">Fecha del vuelo:</label>
-            <input type="date" id="frecuencia_vuelo" name="frecuencia_vuelo" class="form-control" required value="@(ViewBag.FrecuenciaVuelo != null ? ((DateTime)ViewBag.FrecuenciaVuelo).ToString("yyyy-MM-dd") : "")" />
+            <label for="fecha_vuelo" class="form-label">Fecha del vuelo:</label>
+            <input type="date" id="fecha_vuelo" name="fecha_vuelo" class="form-control" required value="@(ViewBag.FechaVuelo != null && ViewBag.FechaVuelo != DateTime.MinValue ? ((DateTime)ViewBag.FechaVuelo).ToString("yyyy-MM-dd") : "")" />
         </div>
 
         @* Botones *@
@@ -91,7 +91,7 @@ else
                     <td>@v.Avion.FabricanteAvion @v.Avion.ModeloAvion</td>
                     <td>@v.Ruta.AeropuertoSalida.Codigo - @v.Ruta.AeropuertoLlegada.Codigo</td>
                     <td>@string.Join(", ", v.Frecuencia)</td>
-                    <td><a class="btn btn-success" href="/Pasajes/HacerCompra?numeroVuelo=@v.NumeroVuelo">Comprar pasaje</a></td>
+                    <td><a class="btn btn-success" href="/Pasajes/HacerCompra?numeroVuelo=@v.NumeroVuelo&fechaVuelo=@(((DateTime?)ViewBag.FechaVuelo)?.ToString("yyyy-MM-dd"))">Comprar pasaje</a></td>
                 </tr>
             }
         </tbody>

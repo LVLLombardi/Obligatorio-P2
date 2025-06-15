@@ -9,7 +9,7 @@ namespace WebP2.Controllers
         Sistema miSistema = Sistema.Instancia;
 
         [HttpGet]
-        public IActionResult HacerCompra(string numeroVuelo)
+        public IActionResult HacerCompra(string numeroVuelo, DateTime fechaVuelo)
         {
             if (TempData["Error"] != null) ViewBag.Error = TempData["Error"];
             if (TempData["Exito"] != null) ViewBag.Exito = TempData["Exito"];
@@ -17,6 +17,7 @@ namespace WebP2.Controllers
             try
             {
                 ViewBag.VueloSeleccionado = miSistema.BuscarVuelo(numeroVuelo);
+                ViewBag.FechaSeleccionada = fechaVuelo;
             }
             catch (Exception ex)
             {
