@@ -33,14 +33,14 @@
         </tr>
         <tr>
             <th>Fecha</th>
-            <td>@((DateTime)ViewBag.FechaSeleccionada).ToString("dd/MM/yyyy")</td>
+            <td>@(((DateTime)ViewBag.FechaSeleccionada).ToString("dd/MM/yyyy"))</td>
         </tr>
     </table>
 
     <br/>
 
     <h3>Completa los datos para tu pasaje</h3>
-    <form method="post" action="HacerCompra">
+    <form method="post" action="/Pasajes/HacerCompra">
         <div class="mb-3">
             <label for="equipaje" class="form-label">Tipo de equipaje:</label>
             <select id="equipaje" name="equipaje" class="form-control">

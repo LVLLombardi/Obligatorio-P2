@@ -11,10 +11,7 @@
   <component name="ChangeListManager">
     <list default="true" id="26e73a90-f2ff-4a5f-8659-b1b67c160a3c" name="Changes" comment="First commit for classes and interface IValidable.">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.ObligatorioP2/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.ObligatorioP2/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WebP2/Controllers/PasajesController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/WebP2/Controllers/PasajesController.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WebP2/Controllers/VuelosController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/WebP2/Controllers/VuelosController.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/WebP2/Views/Pasajes/HacerCompra.cshtml" beforeDir="false" afterPath="$PROJECT_DIR$/WebP2/Views/Pasajes/HacerCompra.cshtml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WebP2/Views/Vuelos/Listado.cshtml" beforeDir="false" afterPath="$PROJECT_DIR$/WebP2/Views/Vuelos/Listado.cshtml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -116,7 +113,7 @@
       <updated>1744048012190</updated>
       <workItem from="1744048013365" duration="22338000" />
       <workItem from="1749004966050" duration="80007000" />
-      <workItem from="1749974007336" duration="2985000" />
+      <workItem from="1749974007336" duration="6516000" />
     </task>
     <servers />
   </component>
