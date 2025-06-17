@@ -10,8 +10,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="26e73a90-f2ff-4a5f-8659-b1b67c160a3c" name="Changes" comment="First commit for classes and interface IValidable.">
+      <change afterPath="$PROJECT_DIR$/WebP2/Views/Pasajes/ListadoPasajesCliente.cshtml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/WebP2/Views/Shared/NoAuth.cshtml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.ObligatorioP2/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.ObligatorioP2/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Dominio/Pasaje.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Dominio/Pasaje.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebP2/Controllers/PasajesController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/WebP2/Controllers/PasajesController.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/WebP2/Views/Pasajes/HacerCompra.cshtml" beforeDir="false" afterPath="$PROJECT_DIR$/WebP2/Views/Pasajes/HacerCompra.cshtml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebP2/Views/Vuelos/Listado.cshtml" beforeDir="false" afterPath="$PROJECT_DIR$/WebP2/Views/Vuelos/Listado.cshtml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -50,24 +55,24 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;.NET Launch Settings Profile.Web: http.executor&quot;: &quot;Run&quot;,
-    &quot;.NET Launch Settings Profile.WebP2: http.executor&quot;: &quot;Run&quot;,
-    &quot;.NET Project.ObligatorioP2.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;XThreadsFramesViewSplitterKey&quot;: &quot;0.45572355&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;org.jetbrains.plugins.github.ui.GithubSettingsConfigurable&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    ".NET Launch Settings Profile.Web: http.executor": "Run",
+    ".NET Launch Settings Profile.WebP2: http.executor": "Run",
+    ".NET Project.ObligatorioP2.executor": "Run",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "XThreadsFramesViewSplitterKey": "0.45572355",
+    "git-widget-placeholder": "fixes",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "org.jetbrains.plugins.github.ui.GithubSettingsConfigurable",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RunManager" selected=".NET Launch Settings Profile.WebP2: http">
     <configuration name="ObligatorioP2" type="DotNetProject" factoryName=".NET Project">
       <option name="EXE_PATH" value="" />
