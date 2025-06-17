@@ -125,4 +125,6 @@ public class UsuariosController : Controller
         HttpContext.Session.Clear();
         return RedirectToAction("Index", "Home");
     }
+    
+    
 }

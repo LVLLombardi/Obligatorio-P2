@@ -83,4 +83,9 @@ public class Vuelo : IValidable
         
         return $"Vuelo -> Número de Vuelo: {_nroVuelo} - Modelo Avión: {_avion.Modelo} - Ruta: {_ruta.AeropuertoSalida.Codigo} - {_ruta.AeropuertoLlegada.Codigo} - Frecuencia: {string.Join(", ", dias)}";
     }
+
+    public double CalcularCostoPorAsiento()
+    {
+        return (_avion.CostoOperacion * _ruta.Distancia + _ruta.AeropuertoSalida.CostoOp + _ruta.AeropuertoLlegada.CostoOp) / _avion.CantAsientos;
+    }
 }

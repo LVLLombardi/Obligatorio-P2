@@ -17,6 +17,16 @@ public class Aeropuerto : IValidable
         _costoTasas = costoTasas;
     }
 
+    public double CostoOp
+    {
+        get { return _costoOp; }
+    }
+
+    public double CostoTasas
+    {
+        get { return _costoTasas; }
+    }
+    
     public string Codigo
     {
         get { return _codigoIATA; }
