@@ -43,7 +43,6 @@ public class UsuariosController : Controller
     [HttpPost]
     public IActionResult Registro(string nombre, string nacionalidad, string email, string contrasenia, string documento)
     {
-        
         try
         {
             if(string.IsNullOrEmpty(nombre)) throw new Exception("El nombre no puede ser vacio");
@@ -78,6 +77,11 @@ public class UsuariosController : Controller
     [HttpGet]
     public IActionResult ListadoClientes()
     {
+        if (HttpContext.Session.GetString("rol") == null || HttpContext.Session.GetString("rol") != "Administrador")
+        {
+            return View("NoAuth");
+        }
+
         ViewBag.Listado = miSistema.ListarClientesPorDocumentoAsc();
         return View();
     }
@@ -85,6 +89,11 @@ public class UsuariosController : Controller
     
     public IActionResult ListadoClientes(string email, string elegibilidad, double nuevosPuntos)
     {
+        if (HttpContext.Session.GetString("rol") == null || HttpContext.Session.GetString("rol") != "Administrador")
+        {
+            return View("NoAuth");
+        }
+        
         try
         {
             if (elegibilidad != null)
@@ -116,4 +125,6 @@ public class UsuariosController : Controller
         HttpContext.Session.Clear();
         return RedirectToAction("Index", "Home");
     }
+    
+    
 }

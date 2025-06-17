@@ -34,6 +34,21 @@ public class Avion : IValidable
         get { return _fabricante; }
     }
 
+    public int CantAsientos
+    {
+        get { return _cantAsientos; }
+    }
+
+    public double AlcanceKm
+    {
+        get { return _alcanceKm; }
+    }
+
+    public double CostoOperacion
+    {
+        get { return _costoOperacion; }
+    }
+    
     public void Validar()
     {
         if(string.IsNullOrEmpty(_fabricante)) throw new Exception("El fabricante no puede ser vacío");

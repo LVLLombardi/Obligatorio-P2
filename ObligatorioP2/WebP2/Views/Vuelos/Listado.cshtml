@@ -1,11 +1,23 @@
 ﻿@using Dominio
+@using NuGet.Common
 @{
     ViewData["Title"] = "Vuelos";
 }
 
 <h3>Comprá tus pasajes de manera fácil y segura</h3>
 
-<form method="get" action="Listado">
+@if (ViewBag.Error != null)
+{
+    <div class="alert alert-danger" role="alert">@ViewBag.Error</div>
+}
+
+@if (ViewBag.Exito != null)
+{
+    <div class="alert alert-success" role="alert">@ViewBag.Exito</div>
+}
+
+
+<form method="get" action="/vuelos/Listado">
     <div class="row mb-3 align-items-end"> @*Alineo columnas horizontalmente, aplico margen inferior y alineo los elementos hijos *@
         @* Aeropuerto de salida *@
         <div class="col-md-3">
@@ -91,7 +103,16 @@ else
                     <td>@v.Avion.FabricanteAvion @v.Avion.ModeloAvion</td>
                     <td>@v.Ruta.AeropuertoSalida.Codigo - @v.Ruta.AeropuertoLlegada.Codigo</td>
                     <td>@string.Join(", ", v.Frecuencia)</td>
-                    <td><a class="btn btn-success" href="/Pasajes/HacerCompra?numeroVuelo=@v.NumeroVuelo&fechaVuelo=@(((DateTime?)ViewBag.FechaVuelo)?.ToString("yyyy-MM-dd"))">Comprar pasaje</a></td>
+                    @if (ViewBag.FechaVuelo == null || ViewBag.FechaVuelo == DateTime.MinValue)
+                    {
+                        <td>
+                            <input type="button" class="btn btn-secondary" value="Elegir Fecha" disabled/>
+                        </td>
+                    }
+                    else
+                    {
+                        <td><a class="btn btn-success" href="/Pasajes/HacerCompra?numeroVuelo=@v.NumeroVuelo&fechaVuelo=@(((DateTime?)ViewBag.FechaVuelo)?.ToString("yyyy-MM-dd"))">Comprar pasaje</a></td>   
+                    }
                 </tr>
             }
         </tbody>

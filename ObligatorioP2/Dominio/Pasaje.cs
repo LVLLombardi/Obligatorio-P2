@@ -2,7 +2,7 @@ using Dominio.Interfaces;
 
 namespace Dominio;
 
-public class Pasaje : IValidable, IComparable<Pasaje>
+public class Pasaje : IValidable, IComparable<Pasaje>, IEquatable<Pasaje>
 {
     private int _id;
     private static int s_ultId = 1;  
@@ -64,6 +64,11 @@ public class Pasaje : IValidable, IComparable<Pasaje>
     public int CompareTo(Pasaje? other)
     {
         return this._fecha.CompareTo(other._fecha);
+    }
+
+    public bool Equals(Pasaje? other)
+    {
+        return this._pasajero.Correo.Equals(other.Pasajero.Correo);
     }
 
     public override string ToString()

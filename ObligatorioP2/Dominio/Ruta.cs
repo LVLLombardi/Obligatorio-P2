@@ -9,7 +9,12 @@ public class Ruta : IValidable
     private Aeropuerto _aeropuertoSalida;
     private Aeropuerto _aeropuertoLlegada;
     private double _distancia;
-
+    
+    public double Distancia
+    {
+        get { return _distancia; }
+    }
+    
     public Aeropuerto AeropuertoSalida
     {
         get { return _aeropuertoSalida; }
@@ -24,6 +29,7 @@ public class Ruta : IValidable
     {
         get { return _id; }
     }
+    
     public Ruta(Aeropuerto aeropuertoSalida, Aeropuerto aeropuertoLlegada, double distancia)
     {
         _id = s_ultId++;

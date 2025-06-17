@@ -14,44 +14,47 @@
     <div class="alert alert-success" role="alert">@ViewBag.Exito</div>
 }
 
-@{
-    Vuelo v = ViewBag.VueloSeleccionado;
 
-    <h3>Seleccionaste el vuelo:</h3>
-    <table class="table table-bordered">
-        <tr>
-            <th>Número de Vuelo</th>
-            <td>@v.NumeroVuelo</td>
-        </tr>
-        <tr>
-            <th>Avión</th>
-            <td>@v.Avion.FabricanteAvion @v.Avion.ModeloAvion</td>
-        </tr>
-        <tr>
-            <th>Origen - Destino</th>
-            <td>@v.Ruta.AeropuertoSalida.Codigo - @v.Ruta.AeropuertoLlegada.Codigo</td>
-        </tr>
-        <tr>
-            <th>Fecha</th>
-            <td>@(((DateTime)ViewBag.FechaSeleccionada).ToString("dd/MM/yyyy"))</td>
-        </tr>
-    </table>
+<h3>Seleccionaste el vuelo:</h3>
+<table class="table table-bordered">
+    <tr>
+        <th>Número de Vuelo</th>
+        <td>@ViewBag.VueloSeleccionado.NumeroVuelo</td>
+    </tr>
+    <tr>
+        <th>Avión</th>
+        <td>@ViewBag.VueloSeleccionado.Avion.FabricanteAvion @ViewBag.VueloSeleccionado.Avion.ModeloAvion</td>
+    </tr>
+    <tr>
+        <th>Origen - Destino</th>
+        <td>@ViewBag.VueloSeleccionado.Ruta.AeropuertoSalida.Codigo - @ViewBag.VueloSeleccionado.Ruta.AeropuertoLlegada.Codigo</td>
+    </tr>
+    <tr>
+        <th>Fecha</th>
+        <td>@(((DateTime)ViewBag.FechaSeleccionada).ToString("dd/MM/yyyy"))</td>
+    </tr>
+</table>
 
-    <br/>
+<br/>
 
-    <h3>Completa los datos para tu pasaje</h3>
-    <form method="post" action="/Pasajes/HacerCompra">
-        <div class="mb-3">
-            <label for="equipaje" class="form-label">Tipo de equipaje:</label>
-            <select id="equipaje" name="equipaje" class="form-control">
-                <option value="0">LIGHT</option>
-                <option value="1">CABINA</option>
-                <option value="2">BODEGA</option>
-            </select>
-        </div>
-        <button type="submit" class="btn btn-primary">Confirmar Compra</button>
-        <a href="/Vuelos/Listado" class="btn btn-secondary">Volver al listado de vuelos</a>
-    </form>
-}
+<h3>Completa los datos para tu pasaje</h3>
+<form method="post" action="/Pasajes/HacerCompra">
+    <div class="mb-3">
+        <label for="equipaje" class="form-label">Tipo de equipaje:</label>
+        <select id="equipaje" name="tipoEquipaje" class="form-control">
+            <option value="0">LIGHT</option>
+            <option value="1">CABINA</option>
+            <option value="2">BODEGA</option>
+        </select>
+    </div>
+    
+    <input type="hidden" name="numeroVuelo" value="@ViewBag.VueloSeleccionado.NumeroVuelo" />
+    <input type="hidden" name="fechaVuelo" value="@(((DateTime)ViewBag.FechaSeleccionada).ToString("yyyy-MM-dd"))" />
+    <input type="hidden" name="precioPasaje" value="20000" /> 
+
+    <input type="submit" class="btn btn-primary" value="Confirmar Compra"/>
+    <a href="/Vuelos/Listado" class="btn btn-secondary">Volver al listado de vuelos</a>
+</form>
+
 
 
