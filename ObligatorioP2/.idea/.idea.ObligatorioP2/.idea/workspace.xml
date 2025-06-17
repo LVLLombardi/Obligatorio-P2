@@ -10,13 +10,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="26e73a90-f2ff-4a5f-8659-b1b67c160a3c" name="Changes" comment="First commit for classes and interface IValidable.">
-      <change afterPath="$PROJECT_DIR$/WebP2/Views/Pasajes/ListadoPasajesCliente.cshtml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/WebP2/Views/Shared/NoAuth.cshtml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Dominio/Comparadores/OrdenadorPasajesPorPrecio.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.ObligatorioP2/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.ObligatorioP2/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Dominio/Pasaje.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Dominio/Pasaje.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Dominio/Sistema.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Dominio/Sistema.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/WebP2/Controllers/PasajesController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/WebP2/Controllers/PasajesController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebP2/Controllers/UsuariosController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/WebP2/Controllers/UsuariosController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebP2/Controllers/VuelosController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/WebP2/Controllers/VuelosController.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/WebP2/Views/Pasajes/HacerCompra.cshtml" beforeDir="false" afterPath="$PROJECT_DIR$/WebP2/Views/Pasajes/HacerCompra.cshtml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WebP2/Views/Vuelos/Listado.cshtml" beforeDir="false" afterPath="$PROJECT_DIR$/WebP2/Views/Vuelos/Listado.cshtml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebP2/Views/Pasajes/ListadoPasajesCliente.cshtml" beforeDir="false" afterPath="$PROJECT_DIR$/WebP2/Views/Pasajes/ListadoPasajesCliente.cshtml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebP2/Views/Shared/_Layout.cshtml" beforeDir="false" afterPath="$PROJECT_DIR$/WebP2/Views/Shared/_Layout.cshtml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

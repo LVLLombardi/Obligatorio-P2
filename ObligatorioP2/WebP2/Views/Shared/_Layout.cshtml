@@ -25,9 +25,7 @@
                     <li class="nav-item">
                         <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
                     </li>
-
-                    
-
+                                                                    
                     @if(Context.Session.GetString("rol") == null)
                     {
                         <li class="nav-item">
@@ -44,6 +42,9 @@
                             <li class="nav-item">
                                 <a class="nav-link text-dark" asp-area="" asp-controller="Vuelos" asp-action="Listado">Vuelos</a>
                             </li> 
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Pasajes" asp-action="ListadoPasajesCliente">Mis Pasajes</a>
+                            </li> 
                         } else if (Context.Session.GetString("rol") == "Administrador")
                         {
                             <li class="nav-item">
@@ -56,9 +57,6 @@
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Usuarios" asp-action="Logout">Salir</a>
                         </li>
-                        
-                        
-                        
                     }
                 </ul>
             </div>

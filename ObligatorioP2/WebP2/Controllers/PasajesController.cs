@@ -12,6 +12,10 @@ namespace WebP2.Controllers
         [HttpGet]
         public IActionResult HacerCompra(string numeroVuelo, DateTime fechaVuelo)
         {
+            if (HttpContext.Session.GetString("rol") == null || HttpContext.Session.GetString("rol") != "Cliente")
+            {
+                return View("NoAuth");
+            }
             if (TempData["Error"] != null) ViewBag.Error = TempData["Error"];
             if (TempData["Exito"] != null) ViewBag.Exito = TempData["Exito"];
 
@@ -33,13 +37,13 @@ namespace WebP2.Controllers
         public IActionResult HacerCompra(string numeroVuelo, DateTime fechaVuelo, Equipaje tipoEquipaje,
             double precioPasaje)
         {
+            if (HttpContext.Session.GetString("rol") == null || HttpContext.Session.GetString("rol") != "Cliente")
+            {
+                return View("NoAuth");
+            }
+            
             try
             {
-                if (HttpContext.Session.GetString("rol") == null || HttpContext.Session.GetString("rol") != "Cliente")
-                {
-                    throw new Exception("Solo los clientes registrados pueden comprar pasajes.");
-                }
-
                 Pasaje pasajeComprado = miSistema.ComprarPasaje(numeroVuelo, fechaVuelo,
                     HttpContext.Session.GetString("email"), tipoEquipaje, precioPasaje);
                 TempData["Exito"] = "Usted ha comprado el pasaje de manera exitosa.";
@@ -54,7 +58,12 @@ namespace WebP2.Controllers
 
         public IActionResult ListadoPasajesCliente()
         {
-            ViewBag.Pasajes = miSistema.Pasajes;
+            if (HttpContext.Session.GetString("rol") == null || HttpContext.Session.GetString("rol") != "Cliente")
+            {
+                return View("NoAuth");
+            }
+            
+            ViewBag.Pasajes = miSistema.ListarPasajesPorPrecioDesc(HttpContext.Session.GetString("email"));
             return View();
         }
     }

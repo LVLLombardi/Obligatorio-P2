@@ -9,6 +9,11 @@ namespace WebP2.Controllers
         [HttpGet]
         public IActionResult Listado(string aeropuerto_salida, string aeropuerto_llegada, DateTime fecha_vuelo)
         {
+            if (HttpContext.Session.GetString("rol") == null || HttpContext.Session.GetString("rol") != "Cliente")
+            {
+                return View("NoAuth");
+            }
+            
             if (TempData["Error"] != null) ViewBag.Error = TempData["Error"];
             if (TempData["Exito"] != null) ViewBag.Exito = TempData["Exito"];
 

@@ -541,4 +541,18 @@ public class Sistema
         
         return buscados;
     }
+
+    public List<Pasaje> ListarPasajesPorPrecioDesc(string emailCliente)
+    {
+        List<Pasaje> buscados = new List<Pasaje>();
+        foreach (Pasaje p in _pasajes)
+        {
+            if (p.Pasajero.Correo.Equals(emailCliente))
+            {
+                buscados.Add(p);
+            }
+        }
+        //FALTA EL SORT POR EL PRECIO
+        return buscados;
+    }
 }

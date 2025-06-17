@@ -3,35 +3,36 @@
 
 <br/>
 
-@if (ViewBag.Listado == null || ViewBag.Listado.Count == 0)
+@if(ViewBag.Pasajes != null && ViewBag.Pasajes.Count > 0)
+{
+    <div class="table-responsive">
+        <table class="table table-striped table-bordered table-hover align-middle mb-0">
+            <thead class="table-primary text-center">
+            <tr>
+                <th>Codigo</th>
+                <th>Fecha</th>
+                <th>Ruta</th>
+                <th>Tipo Equipaje</th>
+                <th>Precio</th>
+            </tr>
+            </thead>
+            <tbody class="text-center">
+            @foreach (Pasaje p in ViewBag.Pasajes)
+            {
+                <tr>
+                    <td>@p.Vuelo.NumeroVuelo</td>
+                    <td>@p.Fecha.ToShortDateString()</td>
+                    <td>@p.Vuelo.Ruta.AeropuertoSalida.Codigo - @p.Vuelo.Ruta.AeropuertoLlegada.Codigo</td>
+                    <td>@p.Equipaje</td>
+                    <td>@p.Precio</td>
+                </tr>
+            }
+            </tbody>
+        </table>
+    </div>
+}
+else
 {
     <div class="alert alert-warning text-center">No se encontraron pasajes</div>
-}
+}                                                           
 
-<div class="table-responsive">
-    <table class="table table-striped table-bordered table-hover align-middle mb-0">
-        <thead class="table-primary text-center">
-        <tr>
-            <th>Codigo</th>
-            <th>Fecha</th>
-            <th>Ruta</th>
-            <th>Tipo Equipaje</th>
-            <th>Precio</th>
-            <th>Email</th>
-        </tr>
-        </thead>
-        <tbody class="text-center">
-        @foreach (Pasaje p in ViewBag.Pasajes)
-        {
-            <tr>
-                <td>@p.Vuelo.NumeroVuelo</td>
-                <td>@p.Fecha.ToShortDateString()</td>
-                <td>@p.Vuelo.Ruta.AeropuertoSalida.Codigo - @p.Vuelo.Ruta.AeropuertoLlegada.Codigo</td>
-                <td>@p.Equipaje</td>
-                <td>@p.Precio</td>
-                <td>@p.Pasajero.Correo</td>
-            </tr>
-        }
-        </tbody>
-    </table>
-</div>
