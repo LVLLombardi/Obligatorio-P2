@@ -50,7 +50,7 @@
     
     <input type="hidden" name="numeroVuelo" value="@ViewBag.VueloSeleccionado.NumeroVuelo" />
     <input type="hidden" name="fechaVuelo" value="@(((DateTime)ViewBag.FechaSeleccionada).ToString("yyyy-MM-dd"))" />
-    <input type="hidden" name="precioPasaje" value="20000" /> 
+    <input type="hidden" name="precioPasaje" value="@ViewBag.PrecioFinal" /> 
 
     <input type="submit" class="btn btn-primary" value="Confirmar Compra"/>
     <a href="/Vuelos/Listado" class="btn btn-secondary">Volver al listado de vuelos</a>

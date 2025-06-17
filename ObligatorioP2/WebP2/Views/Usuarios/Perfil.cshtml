@@ -1,0 +1,16 @@
+@using Dominio
+
+
+<h2>Perfil</h2>
+
+<p><strong>Email: </strong>@ViewBag.Cliente.Correo</p>
+
+@{
+    <p><strong>Documento: </strong>@ViewBag.Cliente.Documento</p>
+    <p><strong>Nombre: </strong>@ViewBag.Cliente.Nombre</p>
+    <p><strong>Nacionalidad: </strong>@ViewBag.Cliente.Nacionalidad</p>
+     @if (ViewBag.Cliente is ClientePremium cp) 
+    { 
+        <p><strong>Puntos: </strong>@cp.Puntos</p> 
+    } 
+}

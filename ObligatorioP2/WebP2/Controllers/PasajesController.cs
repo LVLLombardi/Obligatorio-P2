@@ -44,7 +44,8 @@ namespace WebP2.Controllers
             
             try
             {
-                Pasaje pasajeComprado = miSistema.ComprarPasaje(numeroVuelo, fechaVuelo,
+                ViewBag.PrecioFinal = precioPasaje;
+                miSistema.ComprarPasaje(numeroVuelo, fechaVuelo,
                     HttpContext.Session.GetString("email"), tipoEquipaje, precioPasaje);
                 TempData["Exito"] = "Usted ha comprado el pasaje de manera exitosa.";
                 return RedirectToAction("Listado", "Vuelos");

@@ -75,4 +75,28 @@ public class Pasaje : IValidable, IComparable<Pasaje>, IEquatable<Pasaje>
     {
         return $"Pasaje-> Id: {_id} - Nombre Pasajero: {_pasajero.Nombre} - Fecha: {_fecha.ToShortDateString()} - Número de vuelo: {_vuelo.NumeroVuelo}";
     }
+
+    public double CostoFinalPasaje()
+    {
+        double costoBase = _vuelo.CalcularCostoPorAsiento();
+        costoBase *= 1.25;
+        if (_pasajero.Tipo() == "Cliente Ocasional")
+        {
+            if (_equipaje == Equipaje.CABINA)
+            {
+                costoBase *= 1.10;
+            } else if (_equipaje == Equipaje.BODEGA)
+            {
+                costoBase *= 1.20;
+            }
+        } else if (_pasajero.Tipo() == "Cliente Premium")
+        {
+            if (_equipaje == Equipaje.BODEGA)
+            {
+                costoBase *= 1.05;
+            }
+        }
+        
+        return costoBase;
+    }
 }
