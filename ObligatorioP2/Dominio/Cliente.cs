@@ -52,4 +52,6 @@ public abstract class Cliente : Usuario, IComparable<Cliente>
     {
         return "Cliente";
     }
+
+    public abstract double CalcularPrecio(double subtotal, Equipaje equipaje);
 }

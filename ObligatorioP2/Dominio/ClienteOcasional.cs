@@ -23,6 +23,21 @@ public class ClienteOcasional:Cliente
         return "Cliente Ocasional";
     }
 
+    public override double CalcularPrecio(double subtotal, Equipaje equipaje)
+    {
+        double precioFinal = subtotal * 1.25;
+
+        if (equipaje == Equipaje.CABINA)
+        {
+            precioFinal *= 1.10;
+        } else if (equipaje == Equipaje.BODEGA)
+        {
+            precioFinal *= 1.20;
+        }
+
+        return precioFinal;
+    }
+
     public void CambiarElegibilidad(bool nuevaElegibilidad)
     {
         _esElegible = nuevaElegibilidad;

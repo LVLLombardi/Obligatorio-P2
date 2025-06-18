@@ -79,24 +79,11 @@ public class Pasaje : IValidable, IComparable<Pasaje>, IEquatable<Pasaje>
     public double CostoFinalPasaje()
     {
         double costoBase = _vuelo.CalcularCostoPorAsiento();
-        costoBase *= 1.25;
-        if (_pasajero.Tipo() == "Cliente Ocasional")
-        {
-            if (_equipaje == Equipaje.CABINA)
-            {
-                costoBase *= 1.10;
-            } else if (_equipaje == Equipaje.BODEGA)
-            {
-                costoBase *= 1.20;
-            }
-        } else if (_pasajero.Tipo() == "Cliente Premium")
-        {
-            if (_equipaje == Equipaje.BODEGA)
-            {
-                costoBase *= 1.05;
-            }
-        }
+        double tasas = _vuelo.Ruta.AeropuertoSalida.CostoTasas + _vuelo.Ruta.AeropuertoLlegada.CostoTasas;
+
+        double subtotal = costoBase + tasas;
+        _precio = _pasajero.CalcularPrecio(subtotal, _equipaje);
         
-        return costoBase;
+        return _precio;
     }
 }

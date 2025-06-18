@@ -1,5 +1,6 @@
 using System.Reflection;
 using System.Text;
+using Dominio.Comparadores;
 
 namespace Dominio;
 
@@ -478,11 +479,12 @@ public class Sistema
         return vuelosFiltrados;
     }
 
-    public Pasaje ComprarPasaje(string numeroVuelo, DateTime fechaVuelo, string correoCliente, Equipaje tipoEquipaje, double precioPasaje)
+    public Pasaje ComprarPasaje(string numeroVuelo, DateTime fechaVuelo, string correoCliente, Equipaje tipoEquipaje)
     {  
         Vuelo vueloSeleccionado = BuscarVuelo(numeroVuelo);
         Cliente cliente = BuscarCliente(correoCliente);
         DateTime hoy = DateTime.Today;
+        
         if (fechaVuelo.Date < hoy)
         {
             throw new Exception("Error: No se pueden comprar pasajes para fechas pasadas.");
@@ -494,8 +496,9 @@ public class Sistema
         }
 
         //Agrego nuevo pasaje
-        Pasaje nuevoPasaje = new Pasaje(vueloSeleccionado, fechaVuelo, cliente, tipoEquipaje, precioPasaje);
+        Pasaje nuevoPasaje = new Pasaje(vueloSeleccionado, fechaVuelo, cliente, tipoEquipaje, 0);
         nuevoPasaje.Validar();
+        nuevoPasaje.CostoFinalPasaje();
         _pasajes.Add(nuevoPasaje);
         return nuevoPasaje; 
     }
@@ -552,7 +555,7 @@ public class Sistema
                 buscados.Add(p);
             }
         }
-        //FALTA EL SORT POR EL PRECIO
+        buscados.Sort(new OrdenadorPasajesPorPrecio());
         return buscados;
     }
 }
