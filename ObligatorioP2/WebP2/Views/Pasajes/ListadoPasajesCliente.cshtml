@@ -24,7 +24,7 @@
                     <td>@p.Fecha.ToShortDateString()</td>
                     <td>@p.Vuelo.Ruta.AeropuertoSalida.Codigo - @p.Vuelo.Ruta.AeropuertoLlegada.Codigo</td>
                     <td>@p.Equipaje</td>
-                    <td>@p.Precio</td>
+                    <td>@p.Precio.ToString("N2")</td>
                 </tr>
             }
             </tbody>

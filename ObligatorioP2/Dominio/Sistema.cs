@@ -479,13 +479,15 @@ public class Sistema
         return vuelosFiltrados;
     }
 
-    public Pasaje ComprarPasaje(string numeroVuelo, DateTime fechaVuelo, string correoCliente, Equipaje tipoEquipaje)
+    public void ComprarPasaje(string numeroVuelo, DateTime fechaVuelo, string correoCliente, Equipaje tipoEquipaje)
     {  
         Vuelo vueloSeleccionado = BuscarVuelo(numeroVuelo);
         Cliente cliente = BuscarCliente(correoCliente);
-        DateTime hoy = DateTime.Today;
-        
-        if (fechaVuelo.Date < hoy)
+        // DateTime hoy = DateTime.Today;
+        DateTime hoySinHora = DateTime.Today;
+        DateTime fechaVueloSinHora = fechaVuelo.Date;
+
+        if (fechaVueloSinHora < hoySinHora)
         {
             throw new Exception("Error: No se pueden comprar pasajes para fechas pasadas.");
         }
@@ -497,10 +499,9 @@ public class Sistema
 
         //Agrego nuevo pasaje
         Pasaje nuevoPasaje = new Pasaje(vueloSeleccionado, fechaVuelo, cliente, tipoEquipaje, 0);
-        nuevoPasaje.Validar();
         nuevoPasaje.CostoFinalPasaje();
+        nuevoPasaje.Validar();
         _pasajes.Add(nuevoPasaje);
-        return nuevoPasaje; 
     }
     
     public List<Cliente> ListarClientesPorDocumentoAsc()
@@ -521,7 +522,7 @@ public class Sistema
     {
         Cliente cliente = BuscarCliente(email);
         ClienteOcasional co = cliente as ClienteOcasional;
-        if(co == null) throw new Exception("No se encontró cliente ocasional dado");
+        if(co == null) throw new Exception("No se encontró cliente ocasional con email dado");
         co.CambiarElegibilidad(nuevaElegibilidad);
     }
 
