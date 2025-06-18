@@ -125,6 +125,14 @@ public class UsuariosController : Controller
         HttpContext.Session.Clear();
         return RedirectToAction("Index", "Home");
     }
-    
-    
+
+    public IActionResult Perfil()
+    {
+        if (HttpContext.Session.GetString("rol") == null || HttpContext.Session.GetString("rol") != "Cliente")
+        {
+            return View("NoAuth");
+        }
+        ViewBag.Cliente = miSistema.BuscarCliente(HttpContext.Session.GetString("email"));
+        return View();
+    }
 }

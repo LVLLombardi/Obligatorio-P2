@@ -1,4 +1,5 @@
 
+using System.Runtime.InteropServices.JavaScript;
 using Dominio;
 using Microsoft.AspNetCore.Mvc;
 
@@ -16,18 +17,22 @@ namespace WebP2.Controllers
             {
                 return View("NoAuth");
             }
+            
             if (TempData["Error"] != null) ViewBag.Error = TempData["Error"];
             if (TempData["Exito"] != null) ViewBag.Exito = TempData["Exito"];
 
             try
             {
+                if (string.IsNullOrEmpty(numeroVuelo)) throw new Exception("Número vuelo no especificado");
+                if (fechaVuelo == new DateTime()) throw new Exception("Fecha del vuelo no especificada");
                 ViewBag.VueloSeleccionado = miSistema.BuscarVuelo(numeroVuelo);
                 ViewBag.FechaSeleccionada = fechaVuelo;
             }
             catch (Exception ex)
             {
-                TempData["Error"] = ex.Message;
-                return RedirectToAction("Listado", "Vuelos");
+                ViewBag.Error = ex.Message;
+                ViewBag.VueloSeleccionado = null;
+                ViewBag.FechaSeleccionada = fechaVuelo;
             }
 
             return View();
@@ -44,15 +49,19 @@ namespace WebP2.Controllers
             
             try
             {
-                Pasaje pasajeComprado = miSistema.ComprarPasaje(numeroVuelo, fechaVuelo,
-                    HttpContext.Session.GetString("email"), tipoEquipaje, precioPasaje);
+                ViewBag.PrecioFinal = precioPasaje;
+                miSistema.ComprarPasaje(numeroVuelo, fechaVuelo,
+                    HttpContext.Session.GetString("email"), tipoEquipaje);
                 TempData["Exito"] = "Usted ha comprado el pasaje de manera exitosa.";
                 return RedirectToAction("Listado", "Vuelos");
             }
             catch (Exception ex)
             {
-                TempData["Error"] = ex.Message;
-                return RedirectToAction("HacerCompra", "Pasajes");
+                ViewBag.Error = ex.Message;
+                ViewBag.VueloSeleccionado = miSistema.BuscarVuelo(numeroVuelo);
+                ViewBag.FechaSeleccionada = fechaVuelo;
+                ViewBag.PrecioFinal = precioPasaje;
+                return View();
             }
         }
 
@@ -64,6 +73,17 @@ namespace WebP2.Controllers
             }
             
             ViewBag.Pasajes = miSistema.ListarPasajesPorPrecioDesc(HttpContext.Session.GetString("email"));
+            return View();
+        }
+
+        public IActionResult ListadoPasajesAdministrador()
+        {
+            if (HttpContext.Session.GetString("rol") == null || HttpContext.Session.GetString("rol") != "Administrador")
+            {
+                return View("NoAuth");
+            }
+
+            ViewBag.Pasajes = miSistema.ListarPasajesPorFechaAsc();
             return View();
         }
     }

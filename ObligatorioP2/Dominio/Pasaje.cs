@@ -75,4 +75,15 @@ public class Pasaje : IValidable, IComparable<Pasaje>, IEquatable<Pasaje>
     {
         return $"Pasaje-> Id: {_id} - Nombre Pasajero: {_pasajero.Nombre} - Fecha: {_fecha.ToShortDateString()} - Número de vuelo: {_vuelo.NumeroVuelo}";
     }
+
+    public double CostoFinalPasaje()
+    {
+        double costoBase = _vuelo.CalcularCostoPorAsiento();
+        double tasas = _vuelo.Ruta.AeropuertoSalida.CostoTasas + _vuelo.Ruta.AeropuertoLlegada.CostoTasas;
+
+        double subtotal = costoBase + tasas;
+        _precio = _pasajero.CalcularPrecio(subtotal, _equipaje);
+        
+        return _precio;
+    }
 }

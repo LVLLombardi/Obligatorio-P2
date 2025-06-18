@@ -1,3 +1,5 @@
+using System.Reflection.Metadata;
+
 namespace Dominio;
 
 public class ClientePremium:Cliente
@@ -34,6 +36,18 @@ public class ClientePremium:Cliente
     public override string Rol()
     {
         return "Cliente";
+    }
+
+    public override double CalcularPrecio(double subtotal, Equipaje equipaje)
+    {
+        double precioFinal = subtotal * 1.25;
+
+        if (equipaje == Equipaje.BODEGA)
+        {
+            precioFinal *= 1.05;
+        }
+
+        return precioFinal;
     }
 
     public void cambiarPuntos(double nuevosPuntos)
