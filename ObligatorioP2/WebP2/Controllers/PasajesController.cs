@@ -75,5 +75,16 @@ namespace WebP2.Controllers
             ViewBag.Pasajes = miSistema.ListarPasajesPorPrecioDesc(HttpContext.Session.GetString("email"));
             return View();
         }
+
+        public IActionResult ListadoPasajesAdministrador()
+        {
+            if (HttpContext.Session.GetString("rol") == null || HttpContext.Session.GetString("rol") != "Administrador")
+            {
+                return View("NoAuth");
+            }
+
+            ViewBag.Pasajes = miSistema.ListarPasajesPorFechaAsc();
+            return View();
+        }
     }
 }
