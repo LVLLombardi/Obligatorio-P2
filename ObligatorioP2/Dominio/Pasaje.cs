@@ -10,15 +10,13 @@ public class Pasaje : IValidable, IComparable<Pasaje>, IEquatable<Pasaje>
     private DateTime _fecha;
     private Cliente _pasajero;
     private Equipaje _equipaje;
-    private double _precio;
 
-    public Pasaje(Vuelo vuelo, DateTime fecha, Cliente pasajero, Equipaje equipaje, double precio)
+    public Pasaje(Vuelo vuelo, DateTime fecha, Cliente pasajero, Equipaje equipaje)
     {
         _id = s_ultId++;
         _vuelo = vuelo;
         _pasajero = pasajero;
         _equipaje = equipaje;
-        _precio = precio;
         _fecha = fecha; 
     }
 
@@ -37,10 +35,6 @@ public class Pasaje : IValidable, IComparable<Pasaje>, IEquatable<Pasaje>
         get { return _pasajero; }
     }
     
-    public double Precio
-    {
-        get { return _precio; }
-    }
 
     public Vuelo Vuelo
     {
@@ -51,7 +45,6 @@ public class Pasaje : IValidable, IComparable<Pasaje>, IEquatable<Pasaje>
     {
         if (_vuelo == null) throw new Exception("El vuelo no puede ser nulo");
         if(_pasajero == null) throw new Exception("El pasajero no puede ser nulo");
-        if (_precio < 0) throw new Exception("El precio debe ser positivo");
         if(_fecha == new DateTime()) throw new Exception("El fecha no puede ser nula");
         if (!ValidarFecha()) throw new Exception("La fecha no corresponde a la frecuencia del vuelo");
     }
@@ -82,8 +75,6 @@ public class Pasaje : IValidable, IComparable<Pasaje>, IEquatable<Pasaje>
         double tasas = _vuelo.Ruta.AeropuertoSalida.CostoTasas + _vuelo.Ruta.AeropuertoLlegada.CostoTasas;
 
         double subtotal = costoBase + tasas;
-        _precio = _pasajero.CalcularPrecio(subtotal, _equipaje);
-        
-        return _precio;
+       return  _pasajero.CalcularPrecio(subtotal, _equipaje);
     }
 }
